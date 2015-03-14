@@ -154,6 +154,7 @@ exports.Lexer = class Lexer
         when '&&', '||'          then 'LOGIC'
         when 'true', 'false'     then 'BOOL'
         when 'break', 'continue' then 'STATEMENT'
+        when 'if'                then 'IF'
         else  tag
 
     tagToken = @token tag, id, 0, idLength
@@ -760,6 +761,7 @@ COFFEE_ALIAS_MAP =
   no   : 'false'
   on   : 'true'
   off  : 'false'
+  如果  : 'if'
 
 COFFEE_ALIASES  = (key for key of COFFEE_ALIAS_MAP)
 COFFEE_KEYWORDS = COFFEE_KEYWORDS.concat COFFEE_ALIASES
