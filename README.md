@@ -3,10 +3,11 @@
 1） 在lexer.coffee中添加一个'if'的alias: “如果”
 2） 重编译咖啡：
 $ bin/cake build
-3） 测试通过：
+3） 测试通过（新增测试control_flow_zh_CN.coffee）：
 $ bin/cake test
 
 注：开发时所有含有中文字符的源码文件都改成了utf-8
+
             {
          }   }   {
         {   {  }  }
