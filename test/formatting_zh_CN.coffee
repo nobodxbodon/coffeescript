@@ -237,9 +237,9 @@ test "'single-line' expression containing multiple lines", ->
   doesNotThrow -> CoffeeScript.compile """
     (a, b) -> 如果 a
       -a
-    else if b
+    否则 如果 b
     then -b
-    else null
+    否则 null
   """
 
 test "#1275: allow indentation before closing brackets", ->

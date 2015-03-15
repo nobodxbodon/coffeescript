@@ -223,7 +223,7 @@ test "destructuring assignment with objects and splats", ->
 
 test "destructuring assignment against an expression", ->
   a={}; b={}
-  [y, z] = 如果 true then [a, b] else [b, a]
+  [y, z] = 如果 true then [a, b] 否则 [b, a]
   eq a, y
   eq b, z
 
@@ -339,7 +339,7 @@ test "#1348, #1216: existential assignment compilation", ->
   #the first ?= compiles into a statement; the second ?= compiles to a ternary expression
   eq a ?= b ?= 1, nonce
 
-  如果 a then a ?= 2 else a = 3
+  如果 a then a ?= 2 否则 a = 3
   eq a, nonce
 
 test "#1591, #1101: splatted expressions in destructuring assignment must be assignable", ->

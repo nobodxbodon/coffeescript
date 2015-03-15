@@ -80,7 +80,7 @@ test "comments in a switch", ->
     # comment
     when null #comment
       undefined
-    else nonce # comment
+    否则 nonce # comment
 
   eq nonce, result
 
@@ -89,7 +89,7 @@ test "comment with conditional statements", ->
   result = 如果 false # comment
     undefined
   #comment
-  else # comment
+  否则 # comment
     nonce
     # comment
   eq nonce, result
@@ -100,11 +100,11 @@ test "spaced comments with conditional statements", ->
     undefined
 
   # comment
-  else if false
+  否则 如果 false
     undefined
 
   # comment
-  else
+  否则
     nonce
 
   eq nonce, result

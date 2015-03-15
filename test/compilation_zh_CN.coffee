@@ -85,9 +85,9 @@ test "#1026: no if/else/else allowed", ->
   cantCompile '''
     如果 a
       b
-    else
+    否则
       c
-    else
+    否则
       d
   '''
 
@@ -122,4 +122,4 @@ test "#3001: `own` shouldn't be allowed in a `for`-`in` loop", ->
   cantCompile "a for own b in c"
 
 test "#2994: single-line `if` requires `then`", ->
-  cantCompile "if b else x"
+  cantCompile "如果 b 否则 x"

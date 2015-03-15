@@ -54,10 +54,10 @@ test "division is not confused for a regular expression", ->
   a += ' ' until /   /.test a
   eq a, '   '
 
-  a = 如果 /=/.test '=' then yes else no
+  a = 如果 /=/.test '=' then yes 否则 no
   eq a, yes
 
-  a = 如果 !/=/.test '=' then yes else no
+  a = 如果 !/=/.test '=' then yes 否则 no
   eq a, no
 
   #3182:
@@ -107,7 +107,7 @@ test "division vs regex after a callable token", ->
     eq true, this /b/g
   ).call r
   class A
-    p: (regex) -> 如果 regex then r regex else 4
+    p: (regex) -> 如果 regex then r regex 否则 4
   class B extends A
     p: ->
       eq 2, super / b/g

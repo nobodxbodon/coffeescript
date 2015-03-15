@@ -317,7 +317,7 @@ test "executable class bodies", ->
   class A
     如果 true
       b: 'b'
-    else
+    否则
       c: 'c'
 
   a = new A
@@ -343,7 +343,7 @@ test "conditional prototype property assignment", ->
   class Person
     如果 debug
       age: -> 10
-    else
+    否则
       age: -> 20
 
   eq (new Person).age(), 20
@@ -356,7 +356,7 @@ test "mild metaprogramming", ->
       @::[name] = (val) ->
         如果 arguments.length > 0
           @["_#{name}"] = val
-        else
+        否则
           @["_#{name}"]
 
   class Robot extends Base
@@ -463,7 +463,7 @@ test "ensure that constructors invoked with splats return a new object", ->
 
   # Ensure that constructors invoked with splats cache the function.
   called = 0
-  get = -> 如果 called++ then false else class Type
+  get = -> 如果 called++ then false 否则 class Type
   new get() args...
 
 test "`new` shouldn't add extra parens", ->

@@ -437,9 +437,9 @@ test "#1669: break/continue should skip the result only for that branch", ->
   ns = for n in [0..99]
     如果 n > 9
       break
-    else if n & 1
+    否则 如果 n & 1
       continue
-    else
+    否则
       n
   eq "#{ns}", '0,2,4,6,8'
 

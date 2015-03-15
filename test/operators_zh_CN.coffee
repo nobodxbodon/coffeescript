@@ -100,7 +100,7 @@ test "binary existential operator with negative number", ->
 # Existential Operator (Unary)
 
 test "postfix existential operator", ->
-  ok (如果 nonexistent? then false else true)
+  ok (如果 nonexistent? then false 否则 true)
   defined = true
   ok defined?
   defined = false
@@ -111,7 +111,7 @@ test "postfix existential operator only evaluates its operand once", ->
   fn = ->
     ok false 如果 semaphore
     ++semaphore
-  ok(如果 fn()? then true else false)
+  ok(如果 fn()? then true 否则 false)
 
 test "negated postfix existential operator", ->
   ok !nothing?.value

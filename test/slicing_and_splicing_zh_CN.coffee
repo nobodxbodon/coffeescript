@@ -59,7 +59,7 @@ test "#1722: operator precedence in unbounded slice compilation", ->
   n = 2 # some truthy number in `list`
   arrayEq [0..n], list[..n]
   arrayEq [0..n], list[..n or 0]
-  arrayEq [0..n], list[..如果 n then n else 0]
+  arrayEq [0..n], list[..如果 n then n 否则 0]
 
 test "#2349: inclusive slicing to numeric strings", ->
   arrayEq [0, 1], [0..10][.."1"]
@@ -114,7 +114,7 @@ test "splicing to the end, against a one-time function", ->
   fn = ->
     如果 ary
       throw 'err'
-    else
+    否则
       ary = [1, 2, 3]
 
   fn()[0..] = 1
@@ -142,7 +142,7 @@ test "#1723: operator precedence in unbounded splice compilation", ->
   arrayEq [n..9], list
 
   list = [0..9]
-  list[..如果 n then n else 0] = n
+  list[..如果 n then n 否则 0] = n
   arrayEq [n..9], list
 
 test "#2953: methods on endpoints in assignment from array splice literal", ->

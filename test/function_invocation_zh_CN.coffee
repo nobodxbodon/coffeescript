@@ -177,7 +177,7 @@ test "Passing multiple functions without paren-wrapping is legal, and should com
 test "Implicit call with a trailing 如果 statement as a param.", ->
 
   func = -> arguments[1]
-  result = func 'one', 如果 false then 100 else 13
+  result = func 'one', 如果 false then 100 否则 13
   ok result is 13
 
 
@@ -308,7 +308,7 @@ test "Prefix unary assignment operators are allowed in parenless calls.", ->
   ok (func --val) is 5
 
 test "#855: execution context for `func arr...` should be `null`", ->
-  contextTest = -> eq @, 如果 window? then window else global
+  contextTest = -> eq @, 如果 window? then window 否则 global
   array = []
   contextTest array
   contextTest.apply null, array
@@ -421,7 +421,7 @@ test "implicit returns with multiple branches", ->
     如果 false
       for a in b
         return c 如果 d
-    else
+    否则
       nonce
   eq nonce, fn()
 
@@ -431,7 +431,7 @@ test "implicit returns with switches", ->
   fn = ->
     switch nonce
       when nonce then nonce
-      else return undefined
+      否则 return undefined
   eq nonce, fn()
 
 
@@ -442,7 +442,7 @@ test "preserve context when generating closure wrappers for expression conversio
     method: ->
       this.result = 如果 false
         10
-      else
+      否则
         "a"
         "b"
         this.property
@@ -478,14 +478,14 @@ test "implicit call against control structures", ->
 
   save 如果 id false
     'false'
-  else
+  否则
     'true'
 
   eq result, 'true'
 
   save unless id false
     'true'
-  else
+  否则
     'false'
 
   eq result, 'true'

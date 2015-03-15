@@ -13,120 +13,120 @@ id = (_) -> if arguments.length is 1 then _ else Array::slice.call(arguments)
 test "基本条件", ->
   如果 false
     ok false
-  else if false
+  否则 如果 false
     ok false
-  else
+  否则
     ok true
 
   如果 true
     ok true
-  else if true
+  否则 如果 true
     ok false
-  else
+  否则
     ok true
 
   unless true
     ok false
-  else unless true
+  否则 unless true
     ok false
-  else
+  否则
     ok true
 
   unless false
     ok true
-  else unless false
+  否则 unless false
     ok false
-  else
+  否则
     ok true
 
 test "single-line conditional", ->
-  如果 false then ok false else ok true
-  unless false then ok true else ok false
+  如果 false then ok false 否则 ok true
+  unless false then ok true 否则 ok false
 
 test "nested conditionals", ->
   nonce = {}
-  eq nonce, (if true
+  eq nonce, (如果 true
     unless false
-      如果 false then false else
+      如果 false then false 否则
         如果 true
           nonce)
 
 test "nested single-line conditionals", ->
   nonce = {}
 
-  a = if false then undefined else b = if 0 then undefined else nonce
+  a = 如果 false then undefined 否则 b = 如果 0 then undefined 否则 nonce
   eq nonce, a
   eq nonce, b
 
-  c = if false then undefined else (if 0 then undefined else nonce)
+  c = 如果 false then undefined 否则 (如果 0 then undefined 否则 nonce)
   eq nonce, c
 
-  d = if true then id(if false then undefined else nonce)
+  d = 如果 true then id(如果 false then undefined 否则 nonce)
   eq nonce, d
 
 test "empty conditional bodies", ->
-  eq undefined, (if false
-  else if false
-  else)
+  eq undefined, (如果 false
+  否则 如果 false
+  否则)
 
 test "conditional bodies containing only comments", ->
-  eq undefined, (if true
+  eq undefined, (如果 true
     ###
     block comment
     ###
-  else
+  否则
     # comment
   )
 
-  eq undefined, (if false
+  eq undefined, (如果 false
     # comment
-  else if true
+  否则 如果 true
     ###
     block comment
     ###
-  else)
+  否则)
 
 test "return value of if-else is from the proper body", ->
   nonce = {}
-  eq nonce, if false then undefined else nonce
+  eq nonce, 如果 false then undefined 否则 nonce
 
 test "return value of unless-else is from the proper body", ->
   nonce = {}
-  eq nonce, unless true then undefined else nonce
+  eq nonce, unless true then undefined 否则 nonce
 
 test "assign inside the condition of a conditional statement", ->
   nonce = {}
   如果 a = nonce then 1
   eq nonce, a
-  1 if b = nonce
+  1 如果 b = nonce
   eq nonce, b
 
 
 # Interactions With Functions
 
 test "single-line function definition with single-line conditional", ->
-  fn = -> if 1 < 0.5 then 1 else -1
+  fn = -> 如果 1 < 0.5 then 1 否则 -1
   ok fn() is -1
 
 test "function resturns conditional value with no `else`", ->
   fn = ->
-    return if false then true
+    return 如果 false then true
   eq undefined, fn()
 
 test "function returns a conditional value", ->
   a = {}
   fnA = ->
-    return if false then undefined else a
+    return 如果 false then undefined 否则 a
   eq a, fnA()
 
   b = {}
   fnB = ->
-    return unless false then b else undefined
+    return unless false then b 否则 undefined
   eq b, fnB()
 
 test "passing a conditional value to a function", ->
   nonce = {}
-  eq nonce, id if false then undefined else nonce
+  eq nonce, id 如果 false then undefined 否则 nonce
 
 test "unmatched `then` should catch implicit calls", ->
   a = 0
@@ -139,13 +139,13 @@ test "unmatched `then` should catch implicit calls", ->
 
 test "if-to-ternary with instanceof requires parentheses", ->
   nonce = {}
-  eq nonce, (if {} instanceof Object
+  eq nonce, (如果 {} instanceof Object
     nonce
-  else
+  否则
     undefined)
 
 test "if-to-ternary as part of a larger operation requires parentheses", ->
-  ok 2, 1 + if false then 0 else 1
+  ok 2, 1 + 如果 false then 0 否则 1
 
 
 # Odd Formatting
@@ -155,7 +155,7 @@ test "if-else indented within an assignment", ->
   result =
     如果 false
       undefined
-    else
+    否则
       nonce
   eq nonce, result
 
@@ -163,12 +163,12 @@ test "suppressed indentation via assignment", ->
   nonce = {}
   result =
     如果      false then undefined
-    else if no    then undefined
-    else if 0     then undefined
-    else if 1 < 0 then undefined
-    else               id(
+    否则 如果 no    then undefined
+    否则 如果 0     then undefined
+    否则 如果 1 < 0 then undefined
+    否则               id(
          如果 false then undefined
-         else          nonce
+         否则          nonce
     )
   eq nonce, result
 
@@ -177,17 +177,17 @@ test "tight formatting with leading `then`", ->
   eq nonce,
   如果 true
   then nonce
-  else undefined
+  否则 undefined
 
 test "#738: inline function defintion", ->
   nonce = {}
-  fn = if true then -> nonce
+  fn = 如果 true then -> nonce
   eq nonce, fn()
 
 test "#748: trailing reserved identifiers", ->
   nonce = {}
   obj = delete: true
-  result = if obj.delete
+  result = 如果 obj.delete
     nonce
   eq nonce, result
 
@@ -195,7 +195,7 @@ test "#748: trailing reserved identifiers", ->
 
 test "#3056: multiple postfix conditionals", ->
   temp = 'initial'
-  temp = 'ignored' unless true if false
+  temp = 'ignored' unless true 如果 false
   eq temp, 'initial'
 
 # Loops
@@ -227,7 +227,7 @@ test "basic `while` loops", ->
 
 test "Issue 759: `if` within `while` condition", ->
 
-  2 while if 1 then 0
+  2 while 如果 1 then 0
 
 
 test "assignment inside the condition of a `while` loop", ->
@@ -265,7 +265,7 @@ test "Basic `until`", ->
   value = false
   i = 0
   results = until value
-    value = true if i is 5
+    value = true 如果 i is 5
     i++
   ok i is 6
 
@@ -276,7 +276,7 @@ test "Basic `loop`", ->
   list = []
   loop
     i -= 1
-    break if i is 0
+    break 如果 i is 0
     list.push i * 2
   ok list.join(' ') is '8 6 4 2'
 
@@ -293,7 +293,7 @@ test "break *not* at the top level", ->
     i = 0
     while ++i < 3
       result = i
-      break if i > 1
+      break 如果 i > 1
     result
   eq 2, someFunc()
 
@@ -314,7 +314,7 @@ test "basic `switch`", ->
     # Mid-switch comment with whitespace
     # and multi line
     when 11 then false
-    else false
+    否则 false
 
   ok result
 
@@ -338,7 +338,7 @@ test "Ensure that trailing switch elses don't get rewritten.", ->
   switch "word"
     when "one thing"
       doSomething()
-    else
+    否则
       result = true unless false
 
   ok result
@@ -349,7 +349,7 @@ test "Ensure that trailing switch elses don't get rewritten.", ->
       doSomething()
     when "other thing"
       doSomething()
-    else
+    否则
       result = true unless false
 
   ok result
@@ -366,7 +366,7 @@ test "Should be able to handle switches sans-condition.", ->
     when 'x' < 'y' > 'z'          then 5
     when 'a' in ['b', 'c']        then 6
     when 'd' in (['e', 'f'])      then 7
-    else ok
+    否则 ok
 
   eq result, ok
 
@@ -378,7 +378,7 @@ test "Should be able to use `@properties` within the switch clause.", ->
     func: ->
       switch @num
         when 101 then '101!'
-        else 'other'
+        否则 'other'
   }
 
   ok obj.func() is '101!'
@@ -391,7 +391,7 @@ test "Should be able to use `@properties` within the switch cases.", ->
     func: (yesOrNo) ->
       result = switch yesOrNo
         when yes then @num
-        else 'other'
+        否则 'other'
       result
   }
 
@@ -417,7 +417,7 @@ test "Issue #997. Switch doesn't fallthrough.", ->
     when true
       如果 false
         return 5
-    else
+    否则
       val = 2
 
   eq val, 1
@@ -436,10 +436,10 @@ test "#2555, strange function if bodies", ->
   success = -> ok true
   failure = -> ok false
 
-  success() if do ->
+  success() 如果 do ->
     yes
 
-  failure() if try
+  failure() 如果 try
     false
 
 test "#1057: `catch` or `finally` in single-line functions", ->
