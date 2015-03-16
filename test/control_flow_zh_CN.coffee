@@ -16,39 +16,39 @@ test "基本条件", ->
   否则 如果 false
     ok false
   否则
-    ok true
+    ok 真
 
-  如果 true
-    ok true
-  否则 如果 true
+  如果 真
+    ok 真
+  否则 如果 真
     ok false
   否则
-    ok true
+    ok 真
 
-  unless true
+  unless 真
     ok false
-  否则 unless true
+  否则 unless 真
     ok false
   否则
-    ok true
+    ok 真
 
   unless false
-    ok true
+    ok 真
   否则 unless false
     ok false
   否则
-    ok true
+    ok 真
 
 test "single-line conditional", ->
-  如果 false then ok false 否则 ok true
-  unless false then ok true 否则 ok false
+  如果 false then ok false 否则 ok 真
+  unless false then ok 真 否则 ok false
 
 test "nested conditionals", ->
   nonce = {}
-  eq nonce, (如果 true
+  eq nonce, (如果 真
     unless false
       如果 false then false 否则
-        如果 true
+        如果 真
           nonce)
 
 test "nested single-line conditionals", ->
@@ -61,7 +61,7 @@ test "nested single-line conditionals", ->
   c = 如果 false then undefined 否则 (如果 0 then undefined 否则 nonce)
   eq nonce, c
 
-  d = 如果 true then id(如果 false then undefined 否则 nonce)
+  d = 如果 真 then id(如果 false then undefined 否则 nonce)
   eq nonce, d
 
 test "empty conditional bodies", ->
@@ -70,7 +70,7 @@ test "empty conditional bodies", ->
   否则)
 
 test "conditional bodies containing only comments", ->
-  eq undefined, (如果 true
+  eq undefined, (如果 真
     ###
     block comment
     ###
@@ -80,7 +80,7 @@ test "conditional bodies containing only comments", ->
 
   eq undefined, (如果 false
     # comment
-  否则 如果 true
+  否则 如果 真
     ###
     block comment
     ###
@@ -92,7 +92,7 @@ test "return value of if-else is from the proper body", ->
 
 test "return value of unless-else is from the proper body", ->
   nonce = {}
-  eq nonce, unless true then undefined 否则 nonce
+  eq nonce, unless 真 then undefined 否则 nonce
 
 test "assign inside the condition of a conditional statement", ->
   nonce = {}
@@ -110,7 +110,7 @@ test "single-line function definition with single-line conditional", ->
 
 test "function resturns conditional value with no `else`", ->
   fn = ->
-    return 如果 false then true
+    return 如果 false then 真
   eq undefined, fn()
 
 test "function returns a conditional value", ->
@@ -130,7 +130,7 @@ test "passing a conditional value to a function", ->
 
 test "unmatched `then` should catch implicit calls", ->
   a = 0
-  trueFn = -> true
+  trueFn = -> 真
   如果 trueFn undefined then a++
   eq 1, a
 
@@ -175,18 +175,18 @@ test "suppressed indentation via assignment", ->
 test "tight formatting with leading `then`", ->
   nonce = {}
   eq nonce,
-  如果 true
+  如果 真
   then nonce
   否则 undefined
 
 test "#738: inline function defintion", ->
   nonce = {}
-  fn = 如果 true then -> nonce
+  fn = 如果 真 then -> nonce
   eq nonce, fn()
 
 test "#748: trailing reserved identifiers", ->
   nonce = {}
-  obj = delete: true
+  obj = delete: 真
   result = 如果 obj.delete
     nonce
   eq nonce, result
@@ -195,7 +195,7 @@ test "#748: trailing reserved identifiers", ->
 
 test "#3056: multiple postfix conditionals", ->
   temp = 'initial'
-  temp = 'ignored' unless true 如果 false
+  temp = 'ignored' unless 真 如果 false
   eq temp, 'initial'
 
 # Loops
@@ -265,7 +265,7 @@ test "Basic `until`", ->
   value = false
   i = 0
   results = until value
-    value = true 如果 i is 5
+    value = 真 如果 i is 5
     i++
   ok i is 6
 
@@ -305,10 +305,10 @@ test "basic `switch`", ->
   result = switch num
     when 5 then false
     when 'a'
-      true
-      true
+      真
+      真
       false
-    when 10 then true
+    when 10 then 真
 
 
     # Mid-switch comment with whitespace
@@ -322,7 +322,7 @@ test "basic `switch`", ->
   func = (num) ->
     switch num
       when 2, 4, 6
-        true
+        真
       when 1, 3, 5
         false
 
@@ -339,7 +339,7 @@ test "Ensure that trailing switch elses don't get rewritten.", ->
     when "one thing"
       doSomething()
     否则
-      result = true unless false
+      result = 真 unless false
 
   ok result
 
@@ -350,7 +350,7 @@ test "Ensure that trailing switch elses don't get rewritten.", ->
     when "other thing"
       doSomething()
     否则
-      result = true unless false
+      result = 真 unless false
 
   ok result
 
@@ -362,7 +362,7 @@ test "Should be able to handle switches sans-condition.", ->
     when !1                       then 1
     when '' not of {''}           then 2
     when [] not instanceof Array  then 3
-    when true is false            then 4
+    when 真 is false            then 4
     when 'x' < 'y' > 'z'          then 5
     when 'a' in ['b', 'c']        then 6
     when 'd' in (['e', 'f'])      then 7
@@ -414,7 +414,7 @@ test "Issue #997. Switch doesn't fallthrough.", ->
 
   val = 1
   switch true
-    when true
+    when 真
       如果 false
         return 5
     否则
@@ -433,7 +433,7 @@ test "Throw should be usable as an expression.", ->
 
 
 test "#2555, strange function if bodies", ->
-  success = -> ok true
+  success = -> ok 真
   failure = -> ok false
 
   success() 如果 do ->

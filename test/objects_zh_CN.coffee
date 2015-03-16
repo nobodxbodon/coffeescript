@@ -212,7 +212,7 @@ test "some weird indentation in YAML-style object literals", ->
 
 test "#1274: `{} = a()` compiles to `false` instead of `a()`", ->
   a = false
-  fn = -> a = true
+  fn = -> a = 真
   {} = fn()
   ok a
 
@@ -370,8 +370,8 @@ test "#1322: implicit call against implicit object with block comments", ->
     y: 3
 
 test "#1513: Top level bare objs need to be wrapped in parens for unary and existence ops", ->
-  doesNotThrow -> CoffeeScript.run "{}?", bare: true
-  doesNotThrow -> CoffeeScript.run "{}.a++", bare: true
+  doesNotThrow -> CoffeeScript.run "{}?", bare: 真
+  doesNotThrow -> CoffeeScript.run "{}.a++", bare: 真
 
 test "#1871: Special case for IMPLICIT_END in the middle of an implicit object", ->
   result = 'result'
@@ -434,7 +434,7 @@ test "#3216: For loop declaration as a value of an implicit object", ->
     a: for v, i in test then i
     b: for v, i in test then i
     c: for v in test by 1 then v
-    d: for v in test when true then v
+    d: for v in test when 真 then v
   arrayEq ob.a, test
   arrayEq ob.b, test
   arrayEq ob.c, test

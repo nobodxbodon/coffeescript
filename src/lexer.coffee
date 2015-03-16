@@ -764,6 +764,7 @@ COFFEE_ALIAS_MAP =
   off  : 'false'
   如果  : 'if'
   否则  : 'else'
+  真   : 'true'
 
 COFFEE_ALIASES  = (key for key of COFFEE_ALIAS_MAP)
 COFFEE_KEYWORDS = COFFEE_KEYWORDS.concat COFFEE_ALIASES

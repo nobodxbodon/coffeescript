@@ -43,7 +43,7 @@ test "boolean operators", ->
 
   # ensure that RHS is treated as a group
   e = f = false
-  e and= f or true
+  e and= f or 真
   eq false, e
 
 test "compound assignment as a sub expression", ->
@@ -116,19 +116,19 @@ test "more compound assignment", ->
   a = {}
   val = undefined
   val ||= a
-  val ||= true
+  val ||= 真
   eq a, val
 
   b = {}
-  val &&= true
-  eq val, true
+  val &&= 真
+  eq val, 真
   val &&= b
   eq b, val
 
   c = {}
   val = null
   val ?= c
-  val ?= true
+  val ?= 真
   eq c, val
 
 
@@ -223,7 +223,7 @@ test "destructuring assignment with objects and splats", ->
 
 test "destructuring assignment against an expression", ->
   a={}; b={}
-  [y, z] = 如果 true then [a, b] 否则 [b, a]
+  [y, z] = 如果 真 then [a, b] 否则 [b, a]
   eq a, y
   eq b, z
 
@@ -359,7 +359,7 @@ test "#1643: splatted accesses in destructuring assignments should not be declar
         [#{new Array(i).join('x,')}#{access}...] = [#{new Array(i).join('0,')}nonce, nonce2, nonce3]
         unless #{access}[0] is nonce and #{access}[1] is nonce2 and #{access}[2] is nonce3 then throw new Error('[...]')
         """
-      eq nonce, unless (try CoffeeScript.run code, bare: true catch e then true) then nonce
+      eq nonce, unless (try CoffeeScript.run code, bare: 真 catch e then 真) then nonce
   # subpatterns like `[[a]...]` and `[{a}...]`
   subpatterns = ['[sub, sub2, sub3]', '{0: sub, 1: sub2, 2: sub3}']
   for subpattern in subpatterns
@@ -370,7 +370,7 @@ test "#1643: splatted accesses in destructuring assignments should not be declar
         [#{new Array(i).join('x,')}#{subpattern}...] = [#{new Array(i).join('0,')}nonce, nonce2, nonce3]
         unless sub is nonce and sub2 is nonce2 and sub3 is nonce3 then throw new Error('[sub...]')
         """
-      eq nonce, unless (try CoffeeScript.run code, bare: true catch e then true) then nonce
+      eq nonce, unless (try CoffeeScript.run code, bare: 真 catch e then 真) then nonce
 
 test "#1838: Regression with variable assignment", ->
   name =
@@ -410,9 +410,9 @@ test "#2613: parens on LHS of destructuring", ->
 
 test "#2181: conditional assignment as a subexpression", ->
   a = false
-  false && a or= true
+  false && a or= 真
   eq false, a
-  eq false, not a or= true
+  eq false, not a or= 真
 
 test "#1500: Assignment to variables similar to generated variables", ->
   len = 0

@@ -248,7 +248,7 @@ test "#1844: bound functions in nested comprehensions causing empty var statemen
 
 test "#1859: inline function bodies shouldn't modify prior postfix ifs", ->
   list = [1, 2, 3]
-  ok true 如果 list.some (x) -> x is 2
+  ok 真 如果 list.some (x) -> x is 2
 
 test "#2258: allow whitespace-style parameter lists in function definitions", ->
   func = (

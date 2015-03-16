@@ -315,7 +315,7 @@ test "classes with value'd constructors", ->
 test "executable class bodies", ->
 
   class A
-    如果 true
+    如果 真
       b: 'b'
     否则
       c: 'c'
@@ -819,8 +819,8 @@ test "#2949: super in static method with reserved name", ->
 
 test "#3232: super in static methods (not object-assigned)", ->
   class Foo
-    @baz = -> true
-    @qux = -> true
+    @baz = -> 真
+    @qux = -> 真
 
   class Bar extends Foo
     @baz = -> super

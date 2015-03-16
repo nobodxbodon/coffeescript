@@ -77,7 +77,7 @@ test "`?.` and `::` should continue lines", ->
 
 doesNotThrow -> CoffeeScript.compile """
   oh. yes
-  oh?. true
+  oh?. 真
   oh:: return
   """
 
@@ -211,10 +211,10 @@ test "#1195 Ignore trailing semicolons (before newlines or as the last char in a
     nonce2
     unless f() is nonce then throw new Error('; before linebreak should = newline')
     """
-  CoffeeScript.run(preNewline(n), bare: true) for n in [1,2,3]
+  CoffeeScript.run(preNewline(n), bare: 真) for n in [1,2,3]
 
   lastChar = '-> lastChar;'
-  doesNotThrow -> CoffeeScript.compile lastChar, bare: true
+  doesNotThrow -> CoffeeScript.compile lastChar, bare: 真
 
 test "#1299: Disallow token misnesting", ->
   try

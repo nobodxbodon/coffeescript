@@ -53,7 +53,7 @@ test "comments in functions", ->
     # comment
 
   # comment
-    true
+    真
 
   ok fn()
 
@@ -66,7 +66,7 @@ test "comments in functions", ->
 test "trailing comment before an outdent", ->
   nonce = {}
   fn3 = ->
-    如果 true
+    如果 真
       undefined # comment
     nonce
 
@@ -149,7 +149,7 @@ test "block comments in functions", ->
   nonce = {}
 
   fn1 = ->
-    true
+    真
     ###
     false
     ###

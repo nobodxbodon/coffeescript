@@ -50,7 +50,7 @@ test "function invocation with soaked property access", ->
   eq undefined, id nonexistent?.method()
 
 test "if-to-ternary should safely parenthesize soaked property accesses", ->
-  ok (如果 nonexistent?.property then false 否则 true)
+  ok (如果 nonexistent?.property then false 否则 真)
 
 test "#726: don't check for a property on a conditionally-referenced nonexistent thing", ->
   eq undefined, nonexistent?[Date()]

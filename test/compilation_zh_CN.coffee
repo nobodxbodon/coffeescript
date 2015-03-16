@@ -28,7 +28,7 @@ test "header is disabled by default", ->
 
 test "multiple generated references", ->
   a = {b: []}
-  a.b[true] = -> this == a.b
+  a.b[真] = -> this == a.b
   c = 0
   d = []
   ok a.b[0<++c<2] d...
@@ -100,7 +100,7 @@ test "#1273: escaping quotes at the end of heredocs", ->
 
 test "#1106: __proto__ compilation", ->
   object = eq
-  @["__proto__"] = true
+  @["__proto__"] = 真
   ok __proto__
 
 test "reference named hasOwnProperty", ->
@@ -113,7 +113,7 @@ test "#1066: interpolated strings are not implicit functions", ->
   cantCompile '"int#{er}polated" arg'
 
 test "#2846: while with empty body", ->
-  CoffeeScript.compile 'while 1 then', {sourceMap: true}
+  CoffeeScript.compile 'while 1 then', {sourceMap: 真}
 
 test "#2944: implicit call with a regex argument", ->
   CoffeeScript.compile 'o[key] /regex/'

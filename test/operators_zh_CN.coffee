@@ -100,8 +100,8 @@ test "binary existential operator with negative number", ->
 # Existential Operator (Unary)
 
 test "postfix existential operator", ->
-  ok (如果 nonexistent? then false 否则 true)
-  defined = true
+  ok (如果 nonexistent? then false 否则 真)
+  defined = 真
   ok defined?
   defined = false
   ok defined?
@@ -111,13 +111,13 @@ test "postfix existential operator only evaluates its operand once", ->
   fn = ->
     ok false 如果 semaphore
     ++semaphore
-  ok(如果 fn()? then true 否则 false)
+  ok(如果 fn()? then 真 否则 false)
 
 test "negated postfix existential operator", ->
   ok !nothing?.value
 
 test "postfix existential operator on expressions", ->
-  eq true, (1 or 0)?, true
+  eq 真, (1 or 0)?, 真
 
 
 # `is`,`isnt`,`==`,`!=`
@@ -196,7 +196,7 @@ test "#1099: empty array after `in` should compile to `false`", ->
 
 test "#1354: optimized `in` checks should not happen when splats are present", ->
   a = [6, 9]
-  eq 9 in [3, a...], true
+  eq 9 in [3, a...], 真
 
 test "#1100: precedence in or-test compilation of `in`", ->
   ok 0 in [1 and 0]
@@ -230,7 +230,7 @@ test "chainable operators", ->
   ok -1 < 0 < 1 < 10 < 100
 
 test "`is` and `isnt` may be chained", ->
-  ok true is not false is true is not false
+  ok 真 is not false is 真 is not false
   ok 0 is 0 isnt 1 is 1
 
 test "different comparison operators (`>`,`<`,`is`,etc.) may be combined", ->
@@ -238,7 +238,7 @@ test "different comparison operators (`>`,`<`,`is`,etc.) may be combined", ->
   ok 10 < 20 > 2+3 is 5
 
 test "some chainable operators can be negated by `unless`", ->
-  ok (true unless 0==10!=100)
+  ok (真 unless 0==10!=100)
 
 test "operator precedence: `|` lower than `<`", ->
   eq 1, 1 | 2 < 3 < 4
@@ -254,8 +254,8 @@ test "chained operations should evaluate each value only once", ->
   ok 1 > a++ < 1
 
 test "#891: incorrect inversion of chained comparisons", ->
-  ok (true unless 0 > 1 > 2)
-  ok (true unless (NaN = 0/0) < 0/0 < NaN)
+  ok (真 unless 0 > 1 > 2)
+  ok (真 unless (NaN = 0/0) < 0/0 < NaN)
 
 test "#1234: Applying a splat to :: applies the splat to the wrong object", ->
   nonce = {}
@@ -282,7 +282,7 @@ test "Regression with implicit calls against an indented assignment", ->
 
 test "#2155 ... conditional assignment to a closure", ->
   x = null
-  func = -> x ?= (-> 如果 true then 'hi')
+  func = -> x ?= (-> 如果 真 then 'hi')
   func()
   eq x(), 'hi'
 

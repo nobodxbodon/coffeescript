@@ -73,7 +73,7 @@ test "hanging commas and semicolons in argument list", ->
 test "function invocation", ->
 
   func = ->
-    return 如果 true
+    return 如果 真
   eq undefined, func()
 
   result = ("hello".slice) 3
@@ -93,7 +93,7 @@ test "More fun with optional parens.", ->
   ok fn(fn {prop: 101}).prop is 101
 
   okFunc = (f) -> ok(f())
-  okFunc -> true
+  okFunc -> 真
 
 
 test "chained function calls", ->
@@ -469,8 +469,8 @@ test "implicit call against control structures", ->
   save   = (obj) -> result = obj
 
   save switch id false
-    when true
-      'true'
+    when 真
+      '真'
     when false
       'false'
 
@@ -479,16 +479,16 @@ test "implicit call against control structures", ->
   save 如果 id false
     'false'
   否则
-    'true'
+    '真'
 
-  eq result, 'true'
+  eq result, '真'
 
   save unless id false
-    'true'
+    '真'
   否则
     'false'
 
-  eq result, 'true'
+  eq result, '真'
 
   save try
     doesnt exist
@@ -556,7 +556,7 @@ test "#960: improved 'do'", ->
 
 test "#2617: implicit call before unrelated implicit object", ->
   pass = ->
-    true
+    真
 
   result = 如果 pass 1
     one: 1
@@ -578,7 +578,7 @@ test "#2297, Different behaviors on interpreting literal", ->
 
   qux = (x) -> x
   quux = qux
-    corge: foo 100, true
+    corge: foo 100, 真
 
   eq quux.corge, on
 

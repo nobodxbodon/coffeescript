@@ -32,15 +32,15 @@ test "division is not confused for a regular expression", ->
   eq 2, a / b/ g
   eq 2, a	/	b/g # Tabs.
   eq 2, a / b/g # Non-breaking spaces.
-  eq true, a /b/g
+  eq 真, a /b/g
   # Use parentheses to disambiguate.
-  eq true, a(/ b/g)
-  eq true, a(/ b/)
-  eq true, a (/ b/)
+  eq 真, a(/ b/g)
+  eq 真, a(/ b/)
+  eq 真, a (/ b/)
   # Escape to disambiguate.
-  eq true, a /\ b/g
+  eq 真, a /\ b/g
   eq false, a	/\	b/g
-  eq true, a /\ b/
+  eq 真, a /\ b/
 
   obj = method: -> 2
   two = 2
@@ -77,26 +77,26 @@ test "division vs regex after a callable token", ->
   eq 2, a / b/g
   eq 2, a/b/g
   eq 2, a/ b/g
-  eq true, r /b/g
+  eq 真, r /b/g
   eq 2, (1 + 3) / b/g
   eq 2, (1 + 3)/b/g
   eq 2, (1 + 3)/ b/g
-  eq true, (r) /b/g
+  eq 真, (r) /b/g
   eq 2, [4][0] / b/g
   eq 2, [4][0]/b/g
   eq 2, [4][0]/ b/g
-  eq true, [r][0] /b/g
+  eq 真, [r][0] /b/g
   eq 0.5, 4? / b/g
   eq 0.5, 4?/b/g
   eq 0.5, 4?/ b/g
-  eq true, r? /b/g
+  eq 真, r? /b/g
   (->
     eq 2, @ / b/g
     eq 2, @/b/g
     eq 2, @/ b/g
   ).call 4
   (->
-    eq true, @ /b/g
+    eq 真, @ /b/g
   ).call r
   (->
     eq 2, this / b/g
@@ -104,7 +104,7 @@ test "division vs regex after a callable token", ->
     eq 2, this/ b/g
   ).call 4
   (->
-    eq true, this /b/g
+    eq 真, this /b/g
   ).call r
   class A
     p: (regex) -> 如果 regex then r regex 否则 4
@@ -113,7 +113,7 @@ test "division vs regex after a callable token", ->
       eq 2, super / b/g
       eq 2, super/b/g
       eq 2, super/ b/g
-      eq true, super /b/g
+      eq 真, super /b/g
   new B().p()
 
 test "always division and never regex after some tokens", ->
@@ -140,10 +140,10 @@ test "always division and never regex after some tokens", ->
   ok isNaN /a/i/ b/g
   ok isNaN /a/ /b/g
   ok isNaN /a/i /b/g
-  eq 0.5, true / b/g
-  eq 0.5, true/b/g
-  eq 0.5, true/ b/g
-  eq 0.5, true /b/g
+  eq 0.5, 真 / b/g
+  eq 0.5, 真/b/g
+  eq 0.5, 真/ b/g
+  eq 0.5, 真 /b/g
   eq 0, false / b/g
   eq 0, false/b/g
   eq 0, false/ b/g
@@ -205,19 +205,19 @@ test "compound division vs regex", ->
 
   a = (regex) -> regex.test '=C '
   b = a /=c /i
-  eq b, true
+  eq b, 真
 
   a = (regex) -> regex.test '= C '
   # Use parentheses to disambiguate.
   b = a(/= c /i)
-  eq b, true
+  eq b, 真
   b = a(/= c /)
   eq b, false
   b = a (/= c /)
   eq b, false
   # Escape to disambiguate.
   b = a /\= c /i
-  eq b, true
+  eq b, 真
   b = a /\= c /
   eq b, false
 
