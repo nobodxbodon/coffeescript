@@ -122,16 +122,16 @@ test "postfix existential operator on expressions", ->
 
 # `is`,`isnt`,`==`,`!=`
 
-test "`==` and `is` should be interchangeable", ->
+test "`==` 且 `is` should be interchangeable", ->
   a = b = 1
-  ok a is 1 and b == 1
+  ok a is 1 且 b == 1
   ok a == b
   ok a is b
 
-test "`!=` and `isnt` should be interchangeable", ->
+test "`!=` 且 `isnt` should be interchangeable", ->
   a = 0
   b = 1
-  ok a isnt 1 and b != 0
+  ok a isnt 1 且 b != 0
   ok a != b
   ok a isnt b
 
@@ -180,7 +180,7 @@ test "#???: `in` with cache and `__indexOf` should work in argument lists", ->
   eq 1, [Object() in Array()].length
 
 test "#737: `in` should have higher precedence than logical operators", ->
-  eq 1, 1 in [1] and 1
+  eq 1, 1 in [1] 且 1
 
 test "#768: `in` should preserve evaluation order", ->
   share = 0
@@ -199,8 +199,8 @@ test "#1354: optimized `in` checks should not happen when splats are present", -
   eq 9 in [3, a...], 真
 
 test "#1100: precedence in or-test compilation of `in`", ->
-  ok 0 in [1 and 0]
-  ok 0 in [1, 1 and 0]
+  ok 0 in [1 且 0]
+  ok 0 in [1, 1 且 0]
   ok not (0 in [1, 0 or 1])
 
 test "#1630: `in` should check `hasOwnProperty`", ->

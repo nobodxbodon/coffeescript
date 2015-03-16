@@ -5,7 +5,7 @@
 # TODO: add indexing and method invocation tests: {a}['a'] is a, {a}.a()
 
 trailingComma = {k1: "v1", k2: 4, k3: (-> true),}
-ok trailingComma.k3() and (trailingComma.k2 is 4) and (trailingComma.k1 is "v1")
+ok trailingComma.k3() 且 (trailingComma.k2 is 4) 且 (trailingComma.k1 is "v1")
 
 ok {a: (num) -> num is 10 }.a 10
 
@@ -315,7 +315,7 @@ test "#2549, Brace-less Object Literal as a Second Operand on a New Line", ->
     three: 3
   eq foo.one, 1
 
-  bar = 真 and one: 1
+  bar = 真 且 one: 1
   eq bar.one, 1
 
   baz = null ?

@@ -130,7 +130,7 @@ test "Even when referenced in the filter.", ->
 
   list = ['one', 'two', 'three']
 
-  methods = for num, i in list when num isnt 'two' and i isnt 1
+  methods = for num, i in list when num isnt 'two' 且 i isnt 1
     do (num, i) ->
       -> num + ' ' + i
 
@@ -321,9 +321,9 @@ test "Issue #948. Capturing loop variables.", ->
   for y in list()
     do (y) ->
       z = y
-      funcs.push -> "y is #{y} and z is #{z}"
+      funcs.push -> "y is #{y} 且 z is #{z}"
 
-  eq funcs[1](), "y is 2 and z is 2"
+  eq funcs[1](), "y is 2 且 z is 2"
 
 
 test "Cancel the comprehension 如果 there's a jump inside the loop.", ->

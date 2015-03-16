@@ -450,8 +450,8 @@ test "ensure that constructors invoked with splats return a new object", ->
   Type = (@args) ->
   type = new Type args
 
-  ok type and type instanceof Type
-  ok type.args and type.args instanceof Array
+  ok type 且 type instanceof Type
+  ok type.args 且 type.args instanceof Array
   ok v is args[i] for v, i in type.args
 
   Type1 = (@a, @b, @c) ->
@@ -459,7 +459,7 @@ test "ensure that constructors invoked with splats return a new object", ->
 
   ok type1 instanceof   Type1
   eq type1.constructor, Type1
-  ok type1.a is args[0] and type1.b is args[1] and type1.c is args[2]
+  ok type1.a is args[0] 且 type1.b is args[1] 且 type1.c is args[2]
 
   # Ensure that constructors invoked with splats cache the function.
   called = 0

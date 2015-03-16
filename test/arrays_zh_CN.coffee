@@ -8,7 +8,7 @@
 
 test "trailing commas", ->
   trailingComma = [1, 2, 3,]
-  ok (trailingComma[0] is 1) and (trailingComma[2] is 3) and (trailingComma.length is 3)
+  ok (trailingComma[0] is 1) 且 (trailingComma[2] is 3) 且 (trailingComma.length is 3)
 
   trailingComma = [
     1, 2, 3,
