@@ -368,13 +368,13 @@ test "Comprehensions that mention arguments.", ->
 test "expression conversion under explicit returns", ->
   nonce = {}
   fn = ->
-    return (nonce for x in [1,2,3])
+    返回 (nonce for x in [1,2,3])
   arrayEq [nonce,nonce,nonce], fn()
   fn = ->
-    return [nonce for x in [1,2,3]][0]
+    返回 [nonce for x in [1,2,3]][0]
   arrayEq [nonce,nonce,nonce], fn()
   fn = ->
-    return [(nonce for x in [1..3])][0]
+    返回 [(nonce for x in [1..3])][0]
   arrayEq [nonce,nonce,nonce], fn()
 
 
@@ -463,7 +463,7 @@ test "#1850: inner `for` should not be expression-ized 如果 `return`ing", ->
     for a in [1..9] then \
     for b in [1..9]
       c = Math.sqrt a*a + b*b
-      return String [a, b, c] unless c % 1
+      返回 String [a, b, c] unless c % 1
 
 test "#1910: loop index should be mutable within a loop iteration and immutable between loop iterations", ->
   n = 1

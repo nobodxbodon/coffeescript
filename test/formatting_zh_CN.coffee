@@ -12,7 +12,7 @@ doesNotThrow -> CoffeeScript.compile "a = then b"
 test "multiple semicolon-separated statements in parentheticals", ->
   nonce = {}
   eq nonce, (1; 2; nonce)
-  eq nonce, (-> return (1; 2; nonce))()
+  eq nonce, (-> 返回 (1; 2; nonce))()
 
 # * Line Continuation
 #   * Property Accesss

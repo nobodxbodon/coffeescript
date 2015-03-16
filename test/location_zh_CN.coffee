@@ -12,7 +12,7 @@ x = () ->
     catch err
         # Rewriter will generate explicit indentation here.
 
-    return null
+    返回 null
 '''
 
 test "Verify location of generated tokens", ->

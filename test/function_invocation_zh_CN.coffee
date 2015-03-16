@@ -73,7 +73,7 @@ test "hanging commas and semicolons in argument list", ->
 test "function invocation", ->
 
   func = ->
-    return 如果 真
+    返回 如果 真
   eq undefined, func()
 
   result = ("hello".slice) 3
@@ -420,7 +420,7 @@ test "implicit returns with multiple branches", ->
   fn = ->
     如果 伪
       for a in b
-        return c 如果 d
+        返回 c 如果 d
     否则
       nonce
   eq nonce, fn()
@@ -431,7 +431,7 @@ test "implicit returns with switches", ->
   fn = ->
     switch nonce
       when nonce then nonce
-      否则 return undefined
+      否则 返回 undefined
   eq nonce, fn()
 
 
@@ -455,7 +455,7 @@ test "don't wrap 'pure' statements in a closure", ->
   items = [0, 1, 2, 3, nonce, 4, 5]
   fn = (items) ->
     for item in items
-      return item 如果 item is nonce
+      返回 item 如果 item is nonce
   eq nonce, fn items
 
 

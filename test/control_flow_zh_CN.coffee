@@ -110,18 +110,18 @@ test "single-line function definition with single-line conditional", ->
 
 test "function resturns conditional value with no `else`", ->
   fn = ->
-    return 如果 伪 then 真
+    返回 如果 伪 then 真
   eq undefined, fn()
 
 test "function returns a conditional value", ->
   a = {}
   fnA = ->
-    return 如果 伪 then undefined 否则 a
+    返回 如果 伪 then undefined 否则 a
   eq a, fnA()
 
   b = {}
   fnB = ->
-    return unless 伪 then b 否则 undefined
+    返回 unless 伪 then b 否则 undefined
   eq b, fnB()
 
 test "passing a conditional value to a function", ->
@@ -416,7 +416,7 @@ test "Issue #997. Switch doesn't fallthrough.", ->
   switch true
     when 真
       如果 伪
-        return 5
+        返回 5
     否则
       val = 2
 

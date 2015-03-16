@@ -68,12 +68,12 @@ test "even more fancy bound functions", ->
   obj =
     one: ->
       do =>
-        return this.two()
+        返回 this.two()
     two: ->
       do =>
         do =>
           do =>
-            return this.three
+            返回 this.three
     three: 3
 
   eq obj.one(), 3
@@ -286,9 +286,9 @@ test "#1038 Optimize trailing return statements", ->
   compile = (code) -> CoffeeScript.compile(code, bare: 真).trim().replace(/\s+/g, " ")
 
   eq "(function() {});",                 compile("->")
-  eq "(function() {});",                 compile("-> return")
+  eq "(function() {});",                 compile("-> 返回")
   eq "(function() { return void 0; });", compile("-> undefined")
-  eq "(function() { return void 0; });", compile("-> return undefined")
+  eq "(function() { return void 0; });", compile("-> 返回 undefined")
   eq "(function() { foo(); });",         compile("""
                                                  ->
                                                    foo()

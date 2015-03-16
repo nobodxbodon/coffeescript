@@ -42,11 +42,11 @@ test "Issue 750", ->
 
   cantCompile 'a = (break)'
 
-  cantCompile 'a = (return 5 for item in list)'
+  cantCompile 'a = (返回 5 for item in list)'
 
-  cantCompile 'a = (return 5 while condition)'
+  cantCompile 'a = (返回 5 while condition)'
 
-  cantCompile 'a = for x in y\n  return 5'
+  cantCompile 'a = for x in y\n  返回 5'
 
 test "Issue #986: Unicode identifiers", ->
   λ = 5

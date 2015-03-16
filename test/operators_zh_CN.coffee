@@ -192,7 +192,7 @@ test "#768: `in` should preserve evaluation order", ->
 
 test "#1099: empty array after `in` should compile to `false`", ->
   eq 1, [5 in []].length
-  eq 伪, do -> return 0 in []
+  eq 伪, do -> 返回 0 in []
 
 test "#1354: optimized `in` checks should not happen when splats are present", ->
   a = [6, 9]

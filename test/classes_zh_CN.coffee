@@ -636,7 +636,7 @@ test "#1534: class then 'use strict'", ->
   nonce = {}
   error = 'do -> ok this'
   strictTest = "do ->'use strict';#{error}"
-  return unless (try CoffeeScript.run strictTest, bare: 真 catch e then nonce) is nonce
+  返回 unless (try CoffeeScript.run strictTest, bare: 真 catch e then nonce) is nonce
 
   throws -> CoffeeScript.run "class then 'use strict';#{error}", bare: 真
   doesNotThrow -> CoffeeScript.run "class then #{error}", bare: 真
@@ -726,7 +726,7 @@ test "#2319: fn class n extends o.p [INDENT] x = 123", ->
 
 test "#2599: other typed constructors should be inherited", ->
   class Base
-    constructor: -> return {}
+    constructor: -> 返回 {}
 
   class Derived extends Base
 
@@ -804,7 +804,7 @@ test "#2796: ditto, ditto, ditto", ->
 test "#3063: Class bodies cannot contain pure statements", ->
   throws -> CoffeeScript.compile """
     class extends S
-      return 如果 S.f
+      返回 如果 S.f
       @f: => this
   """
 

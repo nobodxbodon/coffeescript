@@ -210,7 +210,7 @@ test "#2916: block comment before implicit call with implicit object", ->
   fn = (obj) -> ok obj.a
   ### ###
   fn
-    a: yes
+    a: 真
 
 test "#3132: Format single-line block comment nicely", ->
   input = """
