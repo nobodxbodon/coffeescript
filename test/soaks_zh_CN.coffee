@@ -69,7 +69,7 @@ test "operations on soaked properties", ->
   eq 1,   a?.b.c +  1
   eq 1,   a?.b.c += 1
   eq 2,   ++a?.b.c
-  eq yes, delete a?.b.c
+  eq 真, delete a?.b.c
 
 
 # Soaked Method Invocation

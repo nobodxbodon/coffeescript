@@ -283,7 +283,7 @@ test "#1435 Indented property access", ->
     1
 
 test "#1038 Optimize trailing return statements", ->
-  compile = (code) -> CoffeeScript.compile(code, bare: yes).trim().replace(/\s+/g, " ")
+  compile = (code) -> CoffeeScript.compile(code, bare: 真).trim().replace(/\s+/g, " ")
 
   eq "(function() {});",                 compile("->")
   eq "(function() {});",                 compile("-> return")

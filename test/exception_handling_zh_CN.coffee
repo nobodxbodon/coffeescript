@@ -119,16 +119,16 @@ test "Try catch finally as implicit arguments", ->
 
   foo = no
   try
-    first try iamwhoiam() finally foo = yes
+    first try iamwhoiam() finally foo = 真
   catch e
-  eq foo, yes
+  eq foo, 真
 
   bar = no
   try
     first try iamwhoiam() catch e finally
-    bar = yes
+    bar = 真
   catch e
-  eq bar, yes
+  eq bar, 真
 
 # Catch Should Not Require Param: #2900
 test "parameter-less catch clause", ->

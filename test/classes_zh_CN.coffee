@@ -636,11 +636,11 @@ test "#1534: class then 'use strict'", ->
   nonce = {}
   error = 'do -> ok this'
   strictTest = "do ->'use strict';#{error}"
-  return unless (try CoffeeScript.run strictTest, bare: yes catch e then nonce) is nonce
+  return unless (try CoffeeScript.run strictTest, bare: 真 catch e then nonce) is nonce
 
-  throws -> CoffeeScript.run "class then 'use strict';#{error}", bare: yes
-  doesNotThrow -> CoffeeScript.run "class then #{error}", bare: yes
-  doesNotThrow -> CoffeeScript.run "class then #{error};'use strict'", bare: yes
+  throws -> CoffeeScript.run "class then 'use strict';#{error}", bare: 真
+  doesNotThrow -> CoffeeScript.run "class then #{error}", bare: 真
+  doesNotThrow -> CoffeeScript.run "class then #{error};'use strict'", bare: 真
 
   # comments are ignored in the Directive Prologue
   comments = ["""
@@ -662,7 +662,7 @@ test "#1534: class then 'use strict'", ->
     #{error}
     ### comment 3 ###"""
   ]
-  throws (-> CoffeeScript.run comment, bare: yes) for comment in comments
+  throws (-> CoffeeScript.run comment, bare: 真) for comment in comments
 
   # [ES5 §14.1](http://es5.github.com/#x14.1) allows for other directives
   directives = ["""
@@ -689,7 +689,7 @@ test "#1534: class then 'use strict'", ->
     'use strict'
     #{error}"""
   ]
-  throws (-> CoffeeScript.run directive, bare: yes) for directive in directives
+  throws (-> CoffeeScript.run directive, bare: 真) for directive in directives
 
 test "#2052: classes should work in strict mode", ->
   try
@@ -706,7 +706,7 @@ test "directives in class with extends ", ->
       'use strict'
       do -> eq this, undefined
   """
-  CoffeeScript.run strictTest, bare: yes
+  CoffeeScript.run strictTest, bare: 真
 
 test "#2630: class bodies can't reference arguments", ->
   throws ->

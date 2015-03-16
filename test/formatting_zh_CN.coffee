@@ -76,7 +76,7 @@ test "`?.` and `::` should continue lines", ->
   #?.foo
 
 doesNotThrow -> CoffeeScript.compile """
-  oh. yes
+  oh. 真
   oh?. 真
   oh:: return
   """

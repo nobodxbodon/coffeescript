@@ -390,12 +390,12 @@ test "Should be able to use `@properties` within the switch cases.", ->
     num: 101
     func: (yesOrNo) ->
       result = switch yesOrNo
-        when yes then @num
+        when 真 then @num
         否则 'other'
       result
   }
 
-  ok obj.func(yes) is 101
+  ok obj.func(真) is 101
 
 
 test "Switch with break as the return value of a loop.", ->
@@ -437,14 +437,14 @@ test "#2555, strange function if bodies", ->
   failure = -> ok 伪
 
   success() 如果 do ->
-    yes
+    真
 
   failure() 如果 try
     伪
 
 test "#1057: `catch` or `finally` in single-line functions", ->
-  ok do -> try throw 'up' catch then yes
-  ok do -> try yes finally 'nothing'
+  ok do -> try throw 'up' catch then 真
+  ok do -> try 真 finally 'nothing'
 
 test "#2367: super in for-loop", ->
   class Foo

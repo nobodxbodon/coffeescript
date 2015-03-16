@@ -24,7 +24,7 @@ moe.hello = ->
 ok moe.hello() is 'Hello Moe'
 
 obj = {
-  is:     -> yes,
+  is:     -> 真,
   'not':  -> no,
 }
 ok obj.is()
@@ -74,11 +74,11 @@ ok obj.b is 2
 # Implicit objects nesting.
 obj =
   options:
-    value: yes
+    value: 真
   fn: ->
     {}
     null
-ok obj.options.value is yes
+ok obj.options.value is 真
 ok obj.fn() is null
 
 # Implicit objects with wacky indentation:
@@ -111,7 +111,7 @@ ok obj.red.indigo is 'violet'
 ok obj.misdent.toString() is ',,,'
 
 #542: Objects leading expression statement should be parenthesized.
-{f: -> ok yes }.f() + 1
+{f: -> ok 真 }.f() + 1
 
 # String-keyed objects shouldn't suppress newlines.
 one =
@@ -220,28 +220,28 @@ test "#1436: `for` etc. work as normal property names", ->
   obj = {}
   eq no, obj.hasOwnProperty 'for'
   obj.for = 'foo' of obj
-  eq yes, obj.hasOwnProperty 'for'
+  eq 真, obj.hasOwnProperty 'for'
 
 test "#2706, Un-bracketed object as argument causes inconsistent behavior", ->
   foo = (x, y) -> y
-  bar = baz: yes
+  bar = baz: 真
 
-  eq yes, foo x: 1, bar.baz
+  eq 真, foo x: 1, bar.baz
 
 test "#2608, Allow inline objects in arguments to be followed by more arguments", ->
   foo = (x, y) -> y
 
-  eq yes, foo x: 1, y: 2, yes
+  eq 真, foo x: 1, y: 2, 真
 
 test "#2308, a: b = c:1", ->
-  foo = a: b = c: yes
-  eq b.c, yes
-  eq foo.a.c, yes
+  foo = a: b = c: 真
+  eq b.c, 真
+  eq foo.a.c, 真
 
 test "#2317, a: b c: 1", ->
   foo = (x) -> x
-  bar = a: foo c: yes
-  eq bar.a.c, yes
+  bar = a: foo c: 真
+  eq bar.a.c, 真
 
 test "#1896, a: func b, {c: d}", ->
   first = (x) -> x
@@ -315,7 +315,7 @@ test "#2549, Brace-less Object Literal as a Second Operand on a New Line", ->
     three: 3
   eq foo.one, 1
 
-  bar = yes and one: 1
+  bar = 真 and one: 1
   eq bar.one, 1
 
   baz = null ?
@@ -350,11 +350,11 @@ test "#1865, syntax regression 1.1.3", ->
   foo = (x, y) -> y
 
   bar = a: foo (->),
-    c: yes
-  eq bar.a.c, yes
+    c: 真
+  eq bar.a.c, 真
 
-  baz = a: foo (->), c: yes
-  eq baz.a.c, yes
+  baz = a: foo (->), c: 真
+  eq baz.a.c, 真
 
 
 test "#1322: implicit call against implicit object with block comments", ->
@@ -450,10 +450,10 @@ test 'inline implicit object literals within multiline implicit object literals'
 test "object keys with interpolations", ->
   # Simple cases.
   a = 'a'
-  obj = "#{a}": yes
-  eq obj.a, yes
-  obj = {"#{a}": yes}
-  eq obj.a, yes
+  obj = "#{a}": 真
+  eq obj.a, 真
+  obj = {"#{a}": 真}
+  eq obj.a, 真
   obj = {"#{a}"}
   eq obj.a, 'a'
   obj = {"#{5}"}
@@ -476,8 +476,8 @@ test "object keys with interpolations", ->
   deepEqual obj, {a: 1, b: 2}
 
   # Commas after key with interpolation.
-  obj = {"#{'a'}": yes,}
-  eq obj.a, yes
+  obj = {"#{'a'}": 真,}
+  eq obj.a, 真
   obj = {
     "#{'a'}": 1,
     "#{'b'}": 2,
