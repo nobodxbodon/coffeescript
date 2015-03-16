@@ -43,7 +43,7 @@ test "boolean operators", ->
 
   # ensure that RHS is treated as a group
   e = f = 伪
-  e and= f or 真
+  e and= f 或 真
   eq 伪, e
 
 test "compound assignment as a sub expression", ->

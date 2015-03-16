@@ -117,7 +117,7 @@ test "negated postfix existential operator", ->
   ok !nothing?.value
 
 test "postfix existential operator on expressions", ->
-  eq 真, (1 or 0)?, 真
+  eq 真, (1 或 0)?, 真
 
 
 # `is`,`isnt`,`==`,`!=`
@@ -201,7 +201,7 @@ test "#1354: optimized `in` checks should not happen when splats are present", -
 test "#1100: precedence in or-test compilation of `in`", ->
   ok 0 in [1 且 0]
   ok 0 in [1, 1 且 0]
-  ok not (0 in [1, 0 or 1])
+  ok not (0 in [1, 0 或 1])
 
 test "#1630: `in` should check `hasOwnProperty`", ->
   ok undefined not in length: 1

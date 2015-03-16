@@ -15,7 +15,7 @@ test "trailing commas", ->
     4, 5, 6
     7, 8, 9,
   ]
-  (sum = (sum or 0) + n) for n in trailingComma
+  (sum = (sum 或 0) + n) for n in trailingComma
 
   a = [((x) -> x), ((x) -> x * x)]
   ok a.length is 2

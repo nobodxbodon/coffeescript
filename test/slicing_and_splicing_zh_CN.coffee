@@ -58,7 +58,7 @@ test "#1722: operator precedence in unbounded slice compilation", ->
   list = [0..9]
   n = 2 # some truthy number in `list`
   arrayEq [0..n], list[..n]
-  arrayEq [0..n], list[..n or 0]
+  arrayEq [0..n], list[..n 或 0]
   arrayEq [0..n], list[..如果 n then n 否则 0]
 
 test "#2349: inclusive slicing to numeric strings", ->
@@ -138,7 +138,7 @@ test "#1723: operator precedence in unbounded splice compilation", ->
   arrayEq [n..9], list
 
   list = [0..9]
-  list[..n or 0] = n
+  list[..n 或 0] = n
   arrayEq [n..9], list
 
   list = [0..9]

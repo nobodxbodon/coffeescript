@@ -426,7 +426,7 @@ test "Issue #997. Switch doesn't fallthrough.", ->
 
 test "Throw should be usable as an expression.", ->
   try
-    伪 or throw 'up'
+    伪 或 throw 'up'
     throw new Error 'failed'
   catch e
     ok e is 'up'
