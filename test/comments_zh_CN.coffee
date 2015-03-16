@@ -47,9 +47,9 @@ test "comments following operators that continue lines", ->
 test "comments in functions", ->
   fn = ->
   # comment
-    false
-    false   # comment
-    false
+    伪
+    伪   # comment
+    伪
     # comment
 
   # comment
@@ -76,7 +76,7 @@ test "comments in a switch", ->
   nonce = {}
   result = switch nonce #comment
     # comment
-    when false then undefined
+    when 伪 then undefined
     # comment
     when null #comment
       undefined
@@ -86,7 +86,7 @@ test "comments in a switch", ->
 
 test "comment with conditional statements", ->
   nonce = {}
-  result = 如果 false # comment
+  result = 如果 伪 # comment
     undefined
   #comment
   否则 # comment
@@ -96,11 +96,11 @@ test "comment with conditional statements", ->
 
 test "spaced comments with conditional statements", ->
   nonce = {}
-  result = 如果 false
+  result = 如果 伪
     undefined
 
   # comment
-  否则 如果 false
+  否则 如果 伪
     undefined
 
   # comment

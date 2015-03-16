@@ -71,7 +71,7 @@ test "array splats with nested arrays", ->
   arrayEq list, [1, 2, [nonce]]
 
 test "#1274: `[] = a()` compiles to `false` instead of `a()`", ->
-  a = false
+  a = 伪
   fn = -> a = 真
   [] = fn()
   ok a

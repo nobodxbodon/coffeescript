@@ -177,7 +177,7 @@ test "Passing multiple functions without paren-wrapping is legal, and should com
 test "Implicit call with a trailing 如果 statement as a param.", ->
 
   func = -> arguments[1]
-  result = func 'one', 如果 false then 100 否则 13
+  result = func 'one', 如果 伪 then 100 否则 13
   ok result is 13
 
 
@@ -418,7 +418,7 @@ test "implicit return", ->
 test "implicit returns with multiple branches", ->
   nonce = {}
   fn = ->
-    如果 false
+    如果 伪
       for a in b
         return c 如果 d
     否则
@@ -440,7 +440,7 @@ test "preserve context when generating closure wrappers for expression conversio
   obj =
     property: nonce
     method: ->
-      this.result = 如果 false
+      this.result = 如果 伪
         10
       否则
         "a"
@@ -468,25 +468,25 @@ test "implicit call against control structures", ->
   result = null
   save   = (obj) -> result = obj
 
-  save switch id false
+  save switch id 伪
     when 真
       '真'
-    when false
-      'false'
+    when 伪
+      '伪'
 
-  eq result, 'false'
+  eq result, '伪'
 
-  save 如果 id false
-    'false'
+  save 如果 id 伪
+    '伪'
   否则
     '真'
 
   eq result, '真'
 
-  save unless id false
+  save unless id 伪
     '真'
   否则
-    'false'
+    '伪'
 
   eq result, '真'
 

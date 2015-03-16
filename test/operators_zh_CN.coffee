@@ -78,9 +78,9 @@ test "binary existential operator", ->
   b = a ? nonce
   eq nonce, b
 
-  a = false
+  a = 伪
   b = a ? nonce
-  eq false, b
+  eq 伪, b
 
   a = 0
   b = a ? nonce
@@ -100,18 +100,18 @@ test "binary existential operator with negative number", ->
 # Existential Operator (Unary)
 
 test "postfix existential operator", ->
-  ok (如果 nonexistent? then false 否则 真)
+  ok (如果 nonexistent? then 伪 否则 真)
   defined = 真
   ok defined?
-  defined = false
+  defined = 伪
   ok defined?
 
 test "postfix existential operator only evaluates its operand once", ->
   semaphore = 0
   fn = ->
-    ok false 如果 semaphore
+    ok 伪 如果 semaphore
     ++semaphore
-  ok(如果 fn()? then 真 否则 false)
+  ok(如果 fn()? then 真 否则 伪)
 
 test "negated postfix existential operator", ->
   ok !nothing?.value
@@ -192,7 +192,7 @@ test "#768: `in` should preserve evaluation order", ->
 
 test "#1099: empty array after `in` should compile to `false`", ->
   eq 1, [5 in []].length
-  eq false, do -> return 0 in []
+  eq 伪, do -> return 0 in []
 
 test "#1354: optimized `in` checks should not happen when splats are present", ->
   a = [6, 9]
@@ -230,7 +230,7 @@ test "chainable operators", ->
   ok -1 < 0 < 1 < 10 < 100
 
 test "`is` and `isnt` may be chained", ->
-  ok 真 is not false is 真 is not false
+  ok 真 is not 伪 is 真 is not 伪
   ok 0 is 0 isnt 1 is 1
 
 test "different comparison operators (`>`,`<`,`is`,etc.) may be combined", ->
@@ -307,7 +307,7 @@ test "power operator", ->
 test "power operator has higher precedence than other maths operators", ->
   eq 55, 1 + 3 ** 3 * 2
   eq -4, -2 ** 2
-  eq false, !2 ** 2
+  eq 伪, !2 ** 2
   eq 0, (!2) ** 2
   eq -2, ~1 ** 5
 

@@ -112,7 +112,7 @@ test "Index values at the end of a loop.", ->
   i = 0
   for i in [1..3]
     -> 'func'
-    break 如果 false
+    break 如果 伪
   ok i is 4
 
 

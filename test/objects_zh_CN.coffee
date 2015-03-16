@@ -211,7 +211,7 @@ test "some weird indentation in YAML-style object literals", ->
   eq 1, obj[1]
 
 test "#1274: `{} = a()` compiles to `false` instead of `a()`", ->
-  a = false
+  a = 伪
   fn = -> a = 真
   {} = fn()
   ok a
@@ -377,7 +377,7 @@ test "#1871: Special case for IMPLICIT_END in the middle of an implicit object",
   result = 'result'
   ident = (x) -> x
 
-  result = ident one: 1 如果 false
+  result = ident one: 1 如果 伪
 
   eq result, 'result'
 

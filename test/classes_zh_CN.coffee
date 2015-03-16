@@ -338,7 +338,7 @@ test "#2502: parenthesizing inner object values", ->
 
 
 test "conditional prototype property assignment", ->
-  debug = false
+  debug = 伪
 
   class Person
     如果 debug
@@ -463,7 +463,7 @@ test "ensure that constructors invoked with splats return a new object", ->
 
   # Ensure that constructors invoked with splats cache the function.
   called = 0
-  get = -> 如果 called++ then false 否则 class Type
+  get = -> 如果 called++ then 伪 否则 class Type
   new get() args...
 
 test "`new` shouldn't add extra parens", ->

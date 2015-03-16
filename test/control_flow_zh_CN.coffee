@@ -11,62 +11,62 @@ id = (_) -> if arguments.length is 1 then _ else Array::slice.call(arguments)
 # Conditionals
 
 test "基本条件", ->
-  如果 false
-    ok false
-  否则 如果 false
-    ok false
+  如果 伪
+    ok 伪
+  否则 如果 伪
+    ok 伪
   否则
     ok 真
 
   如果 真
     ok 真
   否则 如果 真
-    ok false
+    ok 伪
   否则
     ok 真
 
   unless 真
-    ok false
+    ok 伪
   否则 unless 真
-    ok false
+    ok 伪
   否则
     ok 真
 
-  unless false
+  unless 伪
     ok 真
-  否则 unless false
-    ok false
+  否则 unless 伪
+    ok 伪
   否则
     ok 真
 
 test "single-line conditional", ->
-  如果 false then ok false 否则 ok 真
-  unless false then ok 真 否则 ok false
+  如果 伪 then ok 伪 否则 ok 真
+  unless 伪 then ok 真 否则 ok 伪
 
 test "nested conditionals", ->
   nonce = {}
   eq nonce, (如果 真
-    unless false
-      如果 false then false 否则
+    unless 伪
+      如果 伪 then 伪 否则
         如果 真
           nonce)
 
 test "nested single-line conditionals", ->
   nonce = {}
 
-  a = 如果 false then undefined 否则 b = 如果 0 then undefined 否则 nonce
+  a = 如果 伪 then undefined 否则 b = 如果 0 then undefined 否则 nonce
   eq nonce, a
   eq nonce, b
 
-  c = 如果 false then undefined 否则 (如果 0 then undefined 否则 nonce)
+  c = 如果 伪 then undefined 否则 (如果 0 then undefined 否则 nonce)
   eq nonce, c
 
-  d = 如果 真 then id(如果 false then undefined 否则 nonce)
+  d = 如果 真 then id(如果 伪 then undefined 否则 nonce)
   eq nonce, d
 
 test "empty conditional bodies", ->
-  eq undefined, (如果 false
-  否则 如果 false
+  eq undefined, (如果 伪
+  否则 如果 伪
   否则)
 
 test "conditional bodies containing only comments", ->
@@ -78,7 +78,7 @@ test "conditional bodies containing only comments", ->
     # comment
   )
 
-  eq undefined, (如果 false
+  eq undefined, (如果 伪
     # comment
   否则 如果 真
     ###
@@ -88,7 +88,7 @@ test "conditional bodies containing only comments", ->
 
 test "return value of if-else is from the proper body", ->
   nonce = {}
-  eq nonce, 如果 false then undefined 否则 nonce
+  eq nonce, 如果 伪 then undefined 否则 nonce
 
 test "return value of unless-else is from the proper body", ->
   nonce = {}
@@ -110,23 +110,23 @@ test "single-line function definition with single-line conditional", ->
 
 test "function resturns conditional value with no `else`", ->
   fn = ->
-    return 如果 false then 真
+    return 如果 伪 then 真
   eq undefined, fn()
 
 test "function returns a conditional value", ->
   a = {}
   fnA = ->
-    return 如果 false then undefined 否则 a
+    return 如果 伪 then undefined 否则 a
   eq a, fnA()
 
   b = {}
   fnB = ->
-    return unless false then b 否则 undefined
+    return unless 伪 then b 否则 undefined
   eq b, fnB()
 
 test "passing a conditional value to a function", ->
   nonce = {}
-  eq nonce, id 如果 false then undefined 否则 nonce
+  eq nonce, id 如果 伪 then undefined 否则 nonce
 
 test "unmatched `then` should catch implicit calls", ->
   a = 0
@@ -145,7 +145,7 @@ test "if-to-ternary with instanceof requires parentheses", ->
     undefined)
 
 test "if-to-ternary as part of a larger operation requires parentheses", ->
-  ok 2, 1 + 如果 false then 0 否则 1
+  ok 2, 1 + 如果 伪 then 0 否则 1
 
 
 # Odd Formatting
@@ -153,7 +153,7 @@ test "if-to-ternary as part of a larger operation requires parentheses", ->
 test "if-else indented within an assignment", ->
   nonce = {}
   result =
-    如果 false
+    如果 伪
       undefined
     否则
       nonce
@@ -162,12 +162,12 @@ test "if-else indented within an assignment", ->
 test "suppressed indentation via assignment", ->
   nonce = {}
   result =
-    如果      false then undefined
+    如果      伪 then undefined
     否则 如果 no    then undefined
     否则 如果 0     then undefined
     否则 如果 1 < 0 then undefined
     否则               id(
-         如果 false then undefined
+         如果 伪 then undefined
          否则          nonce
     )
   eq nonce, result
@@ -195,7 +195,7 @@ test "#748: trailing reserved identifiers", ->
 
 test "#3056: multiple postfix conditionals", ->
   temp = 'initial'
-  temp = 'ignored' unless 真 如果 false
+  temp = 'ignored' unless 真 如果 伪
   eq temp, 'initial'
 
 # Loops
@@ -262,7 +262,7 @@ test "While over continue.", ->
 
 test "Basic `until`", ->
 
-  value = false
+  value = 伪
   i = 0
   results = until value
     value = 真 如果 i is 5
@@ -303,18 +303,18 @@ test "basic `switch`", ->
 
   num = 10
   result = switch num
-    when 5 then false
+    when 5 then 伪
     when 'a'
       真
       真
-      false
+      伪
     when 10 then 真
 
 
     # Mid-switch comment with whitespace
     # and multi line
-    when 11 then false
-    否则 false
+    when 11 then 伪
+    否则 伪
 
   ok result
 
@@ -324,7 +324,7 @@ test "basic `switch`", ->
       when 2, 4, 6
         真
       when 1, 3, 5
-        false
+        伪
 
   ok func(2)
   ok func(6)
@@ -334,23 +334,23 @@ test "basic `switch`", ->
 
 test "Ensure that trailing switch elses don't get rewritten.", ->
 
-  result = false
+  result = 伪
   switch "word"
     when "one thing"
       doSomething()
     否则
-      result = 真 unless false
+      result = 真 unless 伪
 
   ok result
 
-  result = false
+  result = 伪
   switch "word"
     when "one thing"
       doSomething()
     when "other thing"
       doSomething()
     否则
-      result = 真 unless false
+      result = 真 unless 伪
 
   ok result
 
@@ -362,7 +362,7 @@ test "Should be able to handle switches sans-condition.", ->
     when !1                       then 1
     when '' not of {''}           then 2
     when [] not instanceof Array  then 3
-    when 真 is false            then 4
+    when 真 is 伪            then 4
     when 'x' < 'y' > 'z'          then 5
     when 'a' in ['b', 'c']        then 6
     when 'd' in (['e', 'f'])      then 7
@@ -415,7 +415,7 @@ test "Issue #997. Switch doesn't fallthrough.", ->
   val = 1
   switch true
     when 真
-      如果 false
+      如果 伪
         return 5
     否则
       val = 2
@@ -426,7 +426,7 @@ test "Issue #997. Switch doesn't fallthrough.", ->
 
 test "Throw should be usable as an expression.", ->
   try
-    false or throw 'up'
+    伪 or throw 'up'
     throw new Error 'failed'
   catch e
     ok e is 'up'
@@ -434,13 +434,13 @@ test "Throw should be usable as an expression.", ->
 
 test "#2555, strange function if bodies", ->
   success = -> ok 真
-  failure = -> ok false
+  failure = -> ok 伪
 
   success() 如果 do ->
     yes
 
   failure() 如果 try
-    false
+    伪
 
 test "#1057: `catch` or `finally` in single-line functions", ->
   ok do -> try throw 'up' catch then yes

@@ -42,9 +42,9 @@ test "boolean operators", ->
   eq nonce, d
 
   # ensure that RHS is treated as a group
-  e = f = false
+  e = f = 伪
   e and= f or 真
-  eq false, e
+  eq 伪, e
 
 test "compound assignment as a sub expression", ->
   [a, b, c] = [1, 2, 3]
@@ -297,9 +297,9 @@ test "destructuring with dynamic keys", ->
 
 test "existential assignment", ->
   nonce = {}
-  a = false
+  a = 伪
   a ?= nonce
-  eq false, a
+  eq 伪, a
   b = undefined
   b ?= nonce
   eq nonce, b
@@ -409,10 +409,10 @@ test "#2613: parens on LHS of destructuring", ->
   eq a.b, 1
 
 test "#2181: conditional assignment as a subexpression", ->
-  a = false
-  false && a or= 真
-  eq false, a
-  eq false, not a or= 真
+  a = 伪
+  伪 && a or= 真
+  eq 伪, a
+  eq 伪, not a or= 真
 
 test "#1500: Assignment to variables similar to generated variables", ->
   len = 0

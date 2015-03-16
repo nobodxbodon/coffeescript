@@ -149,7 +149,7 @@ test "default values", ->
   eq nonceB, a(0,0,nonceB)
   eq nonceA, a(0,0,undefined)
   eq nonceA, a(0,0,null)
-  eq false , a(0,0,false)
+  eq 伪 , a(0,0,伪)
   eq nonceB, a(undefined,undefined,nonceB,undefined)
   b = (_,arg=nonceA,_1,_2) -> arg
   eq nonceA, b()
@@ -157,7 +157,7 @@ test "default values", ->
   eq nonceB, b(0,nonceB)
   eq nonceA, b(0,undefined)
   eq nonceA, b(0,null)
-  eq false , b(0,false)
+  eq 伪 , b(0,伪)
   eq nonceB, b(undefined,nonceB,undefined)
   c = (arg=nonceA,_,_1) -> arg
   eq nonceA, c()
@@ -165,7 +165,7 @@ test "default values", ->
   eq nonceB, c(nonceB)
   eq nonceA, c(undefined)
   eq nonceA, c(null)
-  eq false , c(false)
+  eq 伪 , c(伪)
   eq nonceB, c(nonceB,undefined,undefined)
 
 test "default values with @-parameters", ->

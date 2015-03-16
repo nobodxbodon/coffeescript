@@ -43,14 +43,14 @@ test "method calls on soaked methods", ->
   eq nonce    , obj?.a().b()
 
 test "postfix existential operator mixes well with soaked property accesses", ->
-  eq false, nonexistent?.property?
+  eq 伪, nonexistent?.property?
 
 test "function invocation with soaked property access", ->
   id = (_) -> _
   eq undefined, id nonexistent?.method()
 
 test "if-to-ternary should safely parenthesize soaked property accesses", ->
-  ok (如果 nonexistent?.property then false 否则 真)
+  ok (如果 nonexistent?.property then 伪 否则 真)
 
 test "#726: don't check for a property on a conditionally-referenced nonexistent thing", ->
   eq undefined, nonexistent?[Date()]
@@ -111,7 +111,7 @@ test "soaked function invocation with generated functions", ->
   maybe = (fn, arg) -> 如果 typeof fn is 'function' then () -> fn(arg)
   eq maybe(id, nonce)?(), nonce
   eq (maybe id, nonce)?(), nonce
-  eq (maybe false, nonce)?(), undefined
+  eq (maybe 伪, nonce)?(), undefined
 
 test "soaked constructor invocation", ->
   eq 42       , +new Number? 42
@@ -122,7 +122,7 @@ test "soaked constructor invocations with caching and property access", ->
   nonce = {}
   class C
     constructor: ->
-      ok false 如果 semaphore
+      ok 伪 如果 semaphore
       semaphore++
     prop: nonce
   eq nonce, (new C())?.prop

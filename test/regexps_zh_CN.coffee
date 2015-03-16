@@ -39,7 +39,7 @@ test "division is not confused for a regular expression", ->
   eq 真, a (/ b/)
   # Escape to disambiguate.
   eq 真, a /\ b/g
-  eq false, a	/\	b/g
+  eq 伪, a	/\	b/g
   eq 真, a /\ b/
 
   obj = method: -> 2
@@ -144,10 +144,10 @@ test "always division and never regex after some tokens", ->
   eq 0.5, 真/b/g
   eq 0.5, 真/ b/g
   eq 0.5, 真 /b/g
-  eq 0, false / b/g
-  eq 0, false/b/g
-  eq 0, false/ b/g
-  eq 0, false /b/g
+  eq 0, 伪 / b/g
+  eq 0, 伪/b/g
+  eq 0, 伪/ b/g
+  eq 0, 伪 /b/g
   eq 0, null / b/g
   eq 0, null/b/g
   eq 0, null/ b/g
@@ -212,14 +212,14 @@ test "compound division vs regex", ->
   b = a(/= c /i)
   eq b, 真
   b = a(/= c /)
-  eq b, false
+  eq b, 伪
   b = a (/= c /)
-  eq b, false
+  eq b, 伪
   # Escape to disambiguate.
   b = a /\= c /i
   eq b, 真
   b = a /\= c /
-  eq b, false
+  eq b, 伪
 
 test "#764: regular expressions should be indexable", ->
   eq /0/['source'], ///#{0}///['source']

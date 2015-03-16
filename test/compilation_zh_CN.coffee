@@ -79,7 +79,7 @@ test "#2516: Unicode spaces should not be part of identifiers", ->
   eq 1 + 1, 2  
 
 test "don't accidentally stringify keywords", ->
-  ok (-> this == 'this')() is false
+  ok (-> this == 'this')() is 伪
 
 test "#1026: no if/else/else allowed", ->
   cantCompile '''
