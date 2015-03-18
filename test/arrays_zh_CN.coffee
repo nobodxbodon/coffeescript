@@ -8,7 +8,7 @@
 
 test "trailing commas", ->
   trailingComma = [1, 2, 3,]
-  ok (trailingComma[0] is 1) 且 (trailingComma[2] is 3) 且 (trailingComma.length is 3)
+  ok (trailingComma[0] 等于 1) 且 (trailingComma[2] 等于 3) 且 (trailingComma.length 等于 3)
 
   trailingComma = [
     1, 2, 3,
@@ -18,13 +18,13 @@ test "trailing commas", ->
   (sum = (sum 或 0) + n) for n in trailingComma
 
   a = [((x) -> x), ((x) -> x * x)]
-  ok a.length is 2
+  ok a.length 等于 2
 
 test "incorrect indentation without commas", ->
   result = [['a']
    {b: 'c'}]
-  ok result[0][0] is 'a'
-  ok result[1]['b'] is 'c'
+  ok result[0][0] 等于 'a'
+  ok result[1]['b'] 等于 'c'
 
 
 # Splats in Array Literals
@@ -44,8 +44,8 @@ test "mixed shorthand objects in array lists", ->
     'b'
     c:1
   ]
-  ok arr.length is 3
-  ok arr[2].c is 1
+  ok arr.length 等于 3
+  ok arr[2].c 等于 1
 
   arr = [b: 1, a: 2, 100]
   eq arr[1], 100

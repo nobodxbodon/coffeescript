@@ -62,7 +62,7 @@ getMatchingTokens = (str, wantedTokens...) ->
   matchingTokens = []
   i = 0
   for token in tokens
-    如果 token[1].replace(/^'|'$/g, '"') is wantedTokens[i]
+    如果 token[1].replace(/^'|'$/g, '"') 等于 wantedTokens[i]
       i++
       matchingTokens.push token
   eq wantedTokens.length, matchingTokens.length
@@ -446,7 +446,7 @@ test "#3621: Multiline regex and manual `Regex` call with interpolation should
     tokenB = tokensB[i]
     eq tokenA[0], tokenB[0] unless tokenB[0] in ['REGEX_START', 'REGEX_END']
     eq tokenA[1], tokenB[1]
-    unless tokenA[0] is 'STRING_START' 或 tokenB[0] is 'REGEX_START'
+    unless tokenA[0] 等于 'STRING_START' 或 tokenB[0] 等于 'REGEX_START'
       eq tokenA.origin?[1], tokenB.origin?[1]
     eq tokenA.stringEnd, tokenB.stringEnd
 

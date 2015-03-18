@@ -357,7 +357,7 @@ test "#1643: splatted accesses in destructuring assignments should not be declar
         nonce = {}; nonce2 = {}; nonce3 = {};
         @o = o = new (class C then a:{}); f = -> o
         [#{new Array(i).join('x,')}#{access}...] = [#{new Array(i).join('0,')}nonce, nonce2, nonce3]
-        unless #{access}[0] is nonce 且 #{access}[1] is nonce2 且 #{access}[2] is nonce3 then throw new Error('[...]')
+        unless #{access}[0] 等于 nonce 且 #{access}[1] 等于 nonce2 且 #{access}[2] 等于 nonce3 then throw new Error('[...]')
         """
       eq nonce, unless (try CoffeeScript.run code, bare: 真 catch e then 真) then nonce
   # subpatterns like `[[a]...]` and `[{a}...]`
@@ -368,7 +368,7 @@ test "#1643: splatted accesses in destructuring assignments should not be declar
         """
         nonce = {}; nonce2 = {}; nonce3 = {};
         [#{new Array(i).join('x,')}#{subpattern}...] = [#{new Array(i).join('0,')}nonce, nonce2, nonce3]
-        unless sub is nonce 且 sub2 is nonce2 且 sub3 is nonce3 then throw new Error('[sub...]')
+        unless sub 等于 nonce 且 sub2 等于 nonce2 且 sub3 等于 nonce3 then throw new Error('[sub...]')
         """
       eq nonce, unless (try CoffeeScript.run code, bare: 真 catch e then 真) then nonce
 

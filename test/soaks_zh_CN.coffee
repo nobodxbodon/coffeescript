@@ -108,7 +108,7 @@ test "soaked function invocation", ->
 test "soaked function invocation with generated functions", ->
   nonce = {}
   id = (_) -> _
-  maybe = (fn, arg) -> 如果 typeof fn is 'function' then () -> fn(arg)
+  maybe = (fn, arg) -> 如果 typeof fn 等于 'function' then () -> fn(arg)
   eq maybe(id, nonce)?(), nonce
   eq (maybe id, nonce)?(), nonce
   eq (maybe 伪, nonce)?(), undefined

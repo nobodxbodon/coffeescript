@@ -65,7 +65,7 @@ test "division is not confused for a regular expression", ->
   eq match[0], '='
 
   #3410:
-  ok ' '.match(/ /)[0] is ' '
+  ok ' '.match(/ /)[0] 等于 ' '
 
 
 test "division vs regex after a callable token", ->

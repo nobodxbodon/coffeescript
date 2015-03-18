@@ -5,9 +5,9 @@
 # TODO: add indexing and method invocation tests: {a}['a'] is a, {a}.a()
 
 trailingComma = {k1: "v1", k2: 4, k3: (-> true),}
-ok trailingComma.k3() 且 (trailingComma.k2 is 4) 且 (trailingComma.k1 is "v1")
+ok trailingComma.k3() 且 (trailingComma.k2 等于 4) 且 (trailingComma.k1 等于 "v1")
 
-ok {a: (num) -> num is 10 }.a 10
+ok {a: (num) -> num 等于 10 }.a 10
 
 moe = {
   name:  'Moe'
@@ -17,11 +17,11 @@ moe = {
     @['greet'] "Hello"
   10: 'number'
 }
-ok moe.hello() is "Hello Moe"
-ok moe[10] is 'number'
+ok moe.hello() 等于 "Hello Moe"
+ok moe[10] 等于 'number'
 moe.hello = ->
   this['greet'] "Hello"
-ok moe.hello() is 'Hello Moe'
+ok moe.hello() 等于 'Hello Moe'
 
 obj = {
   is:     -> 真,
@@ -37,7 +37,7 @@ obj: 1
 # Object literals should be able to include keywords.
 obj = {class: 'höt'}
 obj.function = 'dog'
-ok obj.class + obj.function is 'hötdog'
+ok obj.class + obj.function 等于 'hötdog'
 
 # Implicit objects as part of chained calls.
 pluck = (x) -> x.a
@@ -60,16 +60,16 @@ test "YAML-style object literals", ->
       server: 'dreamboat'
       timeout: 1000
 
-  ok config.development.server  is 'localhost'
-  ok config.production.server   is 'dreamboat'
-  ok config.development.timeout is 10
-  ok config.production.timeout  is 1000
+  ok config.development.server  等于 'localhost'
+  ok config.production.server   等于 'dreamboat'
+  ok config.development.timeout 等于 10
+  ok config.production.timeout  等于 1000
 
 obj =
   a: 1,
   b: 2,
-ok obj.a is 1
-ok obj.b is 2
+ok obj.a 等于 1
+ok obj.b 等于 2
 
 # Implicit objects nesting.
 obj =
@@ -78,8 +78,8 @@ obj =
   fn: ->
     {}
     null
-ok obj.options.value is 真
-ok obj.fn() is null
+ok obj.options.value 等于 真
+ok obj.fn() 等于 null
 
 # Implicit objects with wacky indentation:
 obj =
@@ -101,14 +101,14 @@ obj =
   [],
                   [],
       []]
-ok obj.abc().join(' ') is 'a b c'
-ok obj.one.length is 5
-ok obj.one[4] is 4
-ok obj.one[2].a is 'b'
-ok (key for key of obj.red).length is 2
-ok obj.red.orange.yellow.green is 'blue'
-ok obj.red.indigo is 'violet'
-ok obj.misdent.toString() is ',,,'
+ok obj.abc().join(' ') 等于 'a b c'
+ok obj.one.length 等于 5
+ok obj.one[4] 等于 4
+ok obj.one[2].a 等于 'b'
+ok (key for key of obj.red).length 等于 2
+ok obj.red.orange.yellow.green 等于 'blue'
+ok obj.red.indigo 等于 'violet'
+ok obj.misdent.toString() 等于 ',,,'
 
 #542: Objects leading expression statement should be parenthesized.
 {f: -> ok 真 }.f() + 1
@@ -136,8 +136,8 @@ third = (a, b, c) -> c
 obj =
   one: 'one'
   two: third 'one', 'two', 'three'
-ok obj.one is 'one'
-ok obj.two is 'three'
+ok obj.one 等于 'one'
+ok obj.two 等于 'three'
 
 test "invoking functions with implicit object literals", ->
   generateGetter = (prop) -> (obj) -> obj[prop]
@@ -180,22 +180,22 @@ test "invoking functions with implicit object literals", ->
     a:1
     b
     c:1
-  ok result.length is 3
-  ok result[2].c is 1
+  ok result.length 等于 3
+  ok result[2].c 等于 1
 
   result = getA b: 13, a: 42, 2
   eq 42, result
 
   result = getArgs a:1, (1 + 1)
-  ok result[1] is 2
+  ok result[1] 等于 2
 
   result = getArgs a:1, b
-  ok result.length is 2
-  ok result[1] is 30
+  ok result.length 等于 2
+  ok result[1] 等于 30
 
   result = getArgs a:1, b, b:1, a
-  ok result.length is 4
-  ok result[2].b is 1
+  ok result.length 等于 4
+  ok result[2].b 等于 1
 
   throws -> CoffeeScript.compile "a = b:1, c"
 

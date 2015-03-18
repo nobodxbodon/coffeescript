@@ -106,7 +106,7 @@ test "assign inside the condition of a conditional statement", ->
 
 test "single-line function definition with single-line conditional", ->
   fn = -> 如果 1 < 0.5 then 1 否则 -1
-  ok fn() is -1
+  ok fn() 等于 -1
 
 test "function resturns conditional value with no `else`", ->
   fn = ->
@@ -205,11 +205,11 @@ test "basic `while` loops", ->
   i = 5
   list = while i -= 1
     i * 2
-  ok list.join(' ') is "8 6 4 2"
+  ok list.join(' ') 等于 "8 6 4 2"
 
   i = 5
   list = (i * 3 while i -= 1)
-  ok list.join(' ') is "12 9 6 3"
+  ok list.join(' ') 等于 "12 9 6 3"
 
   i = 5
   func   = (num) -> i -= num
@@ -217,12 +217,12 @@ test "basic `while` loops", ->
   results = while func 1
     assert()
     i
-  ok results.join(' ') is '4 3 2 1'
+  ok results.join(' ') 等于 '4 3 2 1'
 
   i = 10
-  results = while i -= 1 when i % 2 is 0
+  results = while i -= 1 when i % 2 等于 0
     i * 2
-  ok results.join(' ') is '16 12 8 4'
+  ok results.join(' ') 等于 '16 12 8 4'
 
 
 test "Issue 759: `if` within `while` condition", ->
@@ -265,9 +265,9 @@ test "Basic `until`", ->
   value = 伪
   i = 0
   results = until value
-    value = 真 如果 i is 5
+    value = 真 如果 i 等于 5
     i++
-  ok i is 6
+  ok i 等于 6
 
 
 test "Basic `loop`", ->
@@ -276,9 +276,9 @@ test "Basic `loop`", ->
   list = []
   loop
     i -= 1
-    break 如果 i is 0
+    break 如果 i 等于 0
     list.push i * 2
-  ok list.join(' ') is '8 6 4 2'
+  ok list.join(' ') 等于 '8 6 4 2'
 
 
 test "break at the top level", ->
@@ -362,7 +362,7 @@ test "Should be able to handle switches sans-condition.", ->
     when !1                       then 1
     when '' not of {''}           then 2
     when [] not instanceof Array  then 3
-    when 真 is 伪            then 4
+    when 真 等于 伪            then 4
     when 'x' < 'y' > 'z'          then 5
     when 'a' in ['b', 'c']        then 6
     when 'd' in (['e', 'f'])      then 7
@@ -381,7 +381,7 @@ test "Should be able to use `@properties` within the switch clause.", ->
         否则 'other'
   }
 
-  ok obj.func() is '101!'
+  ok obj.func() 等于 '101!'
 
 
 test "Should be able to use `@properties` within the switch cases.", ->
@@ -395,7 +395,7 @@ test "Should be able to use `@properties` within the switch cases.", ->
       result
   }
 
-  ok obj.func(真) is 101
+  ok obj.func(真) 等于 101
 
 
 test "Switch with break as the return value of a loop.", ->
@@ -429,7 +429,7 @@ test "Throw should be usable as an expression.", ->
     伪 或 throw 'up'
     throw new Error 'failed'
   catch e
-    ok e is 'up'
+    ok e 等于 'up'
 
 
 test "#2555, strange function if bodies", ->

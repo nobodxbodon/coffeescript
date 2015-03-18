@@ -14,7 +14,7 @@ test "Basic array comprehensions.", ->
   nums    = (n * n for n in [1, 2, 3] when n & 1)
   results = (n * 2 for n in nums)
 
-  ok results.join(',') is '2,18'
+  ok results.join(',') 等于 '2,18'
 
 
 test "Basic object comprehensions.", ->
@@ -23,8 +23,8 @@ test "Basic object comprehensions.", ->
   names = (prop + '!' for prop of obj)
   odds  = (prop + '!' for prop, value of obj when value & 1)
 
-  ok names.join(' ') is "one! two! three!"
-  ok odds.join(' ')  is "one! three!"
+  ok names.join(' ') 等于 "one! two! three!"
+  ok odds.join(' ')  等于 "one! three!"
 
 
 test "Basic range comprehensions.", ->
@@ -36,30 +36,30 @@ test "Basic range comprehensions.", ->
 
   result = nums.concat(negs).join(', ')
 
-  ok result is '3, 6, 9, -20, -19, -18'
+  ok result 等于 '3, 6, 9, -20, -19, -18'
 
 
 test "With range comprehensions, you can loop in steps.", ->
 
   results = (x for x in [0...15] by 5)
-  ok results.join(' ') is '0 5 10'
+  ok results.join(' ') 等于 '0 5 10'
 
   results = (x for x in [0..100] by 10)
-  ok results.join(' ') is '0 10 20 30 40 50 60 70 80 90 100'
+  ok results.join(' ') 等于 '0 10 20 30 40 50 60 70 80 90 100'
 
 
 test "And can loop downwards, with a negative step.", ->
 
   results = (x for x in [5..1])
 
-  ok results.join(' ') is '5 4 3 2 1'
-  ok results.join(' ') is [(10-5)..(-2+3)].join(' ')
+  ok results.join(' ') 等于 '5 4 3 2 1'
+  ok results.join(' ') 等于 [(10-5)..(-2+3)].join(' ')
 
   results = (x for x in [10..1])
-  ok results.join(' ') is [10..1].join(' ')
+  ok results.join(' ') 等于 [10..1].join(' ')
 
   results = (x for x in [10...0] by -2)
-  ok results.join(' ') is [10, 8, 6, 4, 2].join(' ')
+  ok results.join(' ') 等于 [10, 8, 6, 4, 2].join(' ')
 
 
 test "Range comprehension gymnastics.", ->
@@ -102,9 +102,9 @@ test "Ensure that the closure wrapper preserves local variables.", ->
     obj[method] = ->
       "I'm " + method
 
-  ok obj.one()   is "I'm one"
-  ok obj.two()   is "I'm two"
-  ok obj.three() is "I'm three"
+  ok obj.one()   等于 "I'm one"
+  ok obj.two()   等于 "I'm two"
+  ok obj.three() 等于 "I'm three"
 
 
 test "Index values at the end of a loop.", ->
@@ -113,7 +113,7 @@ test "Index values at the end of a loop.", ->
   for i in [1..3]
     -> 'func'
     break 如果 伪
-  ok i is 4
+  ok i 等于 4
 
 
 test "Ensure that local variables are closed over for range comprehensions.", ->
@@ -123,7 +123,7 @@ test "Ensure that local variables are closed over for range comprehensions.", ->
       -> -i
 
   eq (func() for func in funcs).join(' '), '-1 -2 -3'
-  ok i is 4
+  ok i 等于 4
 
 
 test "Even when referenced in the filter.", ->
@@ -134,9 +134,9 @@ test "Even when referenced in the filter.", ->
     do (num, i) ->
       -> num + ' ' + i
 
-  ok methods.length is 2
-  ok methods[0]() is 'one 0'
-  ok methods[1]() is 'three 2'
+  ok methods.length 等于 2
+  ok methods[0]() 等于 'one 0'
+  ok methods[1]() 等于 'three 2'
 
 
 test "Even a convoluted one.", ->
@@ -150,7 +150,7 @@ test "Even a convoluted one.", ->
         funcs.push -> z + ' ' + i
       )(x)
 
-  ok (func() for func in funcs).join(', ') is '2 1, 4 2, 6 3'
+  ok (func() for func in funcs).join(', ') 等于 '2 1, 4 2, 6 3'
 
   funcs = []
 
@@ -159,13 +159,13 @@ test "Even a convoluted one.", ->
       z = (x * 3 for x in [1..i])
       ((a, b, c) -> [a, b, c].join(' ')).apply this, z
 
-  ok results.join(', ') is '3  , 3 6 , 3 6 9'
+  ok results.join(', ') 等于 '3  , 3 6 , 3 6 9'
 
 
 test "Naked ranges are expanded into arrays.", ->
 
   array = [0..10]
-  ok(num % 2 is 0 for num in array by 2)
+  ok(num % 2 等于 0 for num in array by 2)
 
 
 test "Nested shared scopes.", ->
@@ -203,9 +203,9 @@ test "Nested comprehensions.", ->
   singleLiner =
     (([x, y] for y in [3..5]) for x in [3..5])
 
-  ok multiLiner.length is singleLiner.length
-  ok 5 is multiLiner[2][2][1]
-  ok 5 is singleLiner[2][2][1]
+  ok multiLiner.length 等于 singleLiner.length
+  ok 5 等于 multiLiner[2][2][1]
+  ok 5 等于 singleLiner[2][2][1]
 
 
 test "Comprehensions within parentheses.", ->
@@ -214,7 +214,7 @@ test "Comprehensions within parentheses.", ->
   store = (obj) -> result = obj
   store (x * 2 for x in [3, 2, 1])
 
-  ok result.join(' ') is '6 4 2'
+  ok result.join(' ') 等于 '6 4 2'
 
 
 test "Closure-wrapped comprehensions that refer to the 'arguments' object.", ->
@@ -222,7 +222,7 @@ test "Closure-wrapped comprehensions that refer to the 'arguments' object.", ->
   expr = ->
     result = (item * item for item in arguments)
 
-  ok expr(2, 4, 8).join(' ') is '4 16 64'
+  ok expr(2, 4, 8).join(' ') 等于 '4 16 64'
 
 
 test "Fast object comprehensions over all properties, including prototypal ones.", ->
@@ -236,14 +236,14 @@ test "Fast object comprehensions over all properties, including prototypal ones.
   own = (value for own key, value of whiskers)
   all = (value for key, value of whiskers)
 
-  ok own.join(' ') is 'Whiskers'
-  ok all.sort().join(' ') is 'Whiskers cream tabby'
+  ok own.join(' ') 等于 'Whiskers'
+  ok all.sort().join(' ') 等于 'Whiskers cream tabby'
 
 
 test "Optimized range comprehensions.", ->
 
   exxes = ('x' for [0...10])
-  ok exxes.join(' ') is 'x x x x x x x x x x'
+  ok exxes.join(' ') 等于 'x x x x x x x x x x'
 
 
 test "#3671: Allow step in optimized range comprehensions.", ->
@@ -269,24 +269,24 @@ test "Lenient on pure statements not trying to reach out of the closure", ->
   val = for i in [1]
     for j in [] then break
     i
-  ok val[0] is i
+  ok val[0] 等于 i
 
 
 test "Comprehensions only wrap their last line in a closure, allowing other lines
   to have pure expressions in them.", ->
 
   func = -> for i in [1]
-    break 如果 i is 2
+    break 如果 i 等于 2
     j for j in [1]
 
-  ok func()[0][0] is 1
+  ok func()[0][0] 等于 1
 
   i = 6
   odds = while i--
     continue unless i & 1
     i
 
-  ok odds.join(', ') is '5, 3, 1'
+  ok odds.join(', ') 等于 '5, 3, 1'
 
 
 test "Issue #897: Ensure that plucked function variables aren't leaked.", ->
@@ -321,9 +321,9 @@ test "Issue #948. Capturing loop variables.", ->
   for y in list()
     do (y) ->
       z = y
-      funcs.push -> "y is #{y} 且 z is #{z}"
+      funcs.push -> "y 等于 #{y} 且 z 等于 #{z}"
 
-  eq funcs[1](), "y is 2 且 z is 2"
+  eq funcs[1](), "y 等于 2 且 z 等于 2"
 
 
 test "Cancel the comprehension 如果 there's a jump inside the loop.", ->

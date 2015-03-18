@@ -124,9 +124,9 @@ test "postfix existential operator on expressions", ->
 
 test "`==` 且 `is` should be interchangeable", ->
   a = b = 1
-  ok a is 1 且 b == 1
+  ok a 等于 1 且 b == 1
   ok a == b
-  ok a is b
+  ok a 等于 b
 
 test "`!=` 且 `isnt` should be interchangeable", ->
   a = 0
@@ -184,9 +184,9 @@ test "#737: `in` should have higher precedence than logical operators", ->
 
 test "#768: `in` should preserve evaluation order", ->
   share = 0
-  a = -> share++ 如果 share is 0
-  b = -> share++ 如果 share is 1
-  c = -> share++ 如果 share is 2
+  a = -> share++ 如果 share 等于 0
+  b = -> share++ 如果 share 等于 1
+  c = -> share++ 如果 share 等于 2
   ok a() not in [b(),c()]
   eq 3, share
 
@@ -230,12 +230,12 @@ test "chainable operators", ->
   ok -1 < 0 < 1 < 10 < 100
 
 test "`is` and `isnt` may be chained", ->
-  ok 真 is not 伪 is 真 is not 伪
-  ok 0 is 0 isnt 1 is 1
+  ok 真 等于 not 伪 等于 真 等于 not 伪
+  ok 0 等于 0 isnt 1 等于 1
 
 test "different comparison operators (`>`,`<`,`is`,etc.) may be combined", ->
   ok 1 < 2 > 1
-  ok 10 < 20 > 2+3 is 5
+  ok 10 < 20 > 2+3 等于 5
 
 test "some chainable operators can be negated by `unless`", ->
   ok (真 unless 0==10!=100)

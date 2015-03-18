@@ -181,7 +181,7 @@ test "#1495, method call chaining", ->
   # Single line function arguments
   result = [1..6]
     .map (x) -> x * x
-    .filter (x) -> x % 2 is 0
+    .filter (x) -> x % 2 等于 0
     .reverse()
   arrayEq [36, 16, 4], result
 
@@ -209,7 +209,7 @@ test "#1195 Ignore trailing semicolons (before newlines or as the last char in a
     nonce = {}; nonce2 = {}
     f = -> nonce#{Array(numSemicolons+1).join(';')}
     nonce2
-    unless f() is nonce then throw new Error('; before linebreak should = newline')
+    unless f() 等于 nonce then throw new Error('; before linebreak should = newline')
     """
   CoffeeScript.run(preNewline(n), bare: 真) for n in [1,2,3]
 

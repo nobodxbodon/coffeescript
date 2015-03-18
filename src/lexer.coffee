@@ -770,6 +770,7 @@ COFFEE_ALIAS_MAP =
   且   : '&&'
   或   : '||'
   返回  : 'return'
+  等于  : '=='
 
 COFFEE_ALIASES  = (key for key of COFFEE_ALIAS_MAP)
 COFFEE_KEYWORDS = COFFEE_KEYWORDS.concat COFFEE_ALIASES

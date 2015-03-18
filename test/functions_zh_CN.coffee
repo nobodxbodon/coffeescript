@@ -16,10 +16,10 @@
 x = 1
 y = {}
 y.x = -> 3
-ok x is 1
-ok typeof(y.x) is 'function'
+ok x 等于 1
+ok typeof(y.x) 等于 'function'
 ok y.x instanceof Function
-ok y.x() is 3
+ok y.x() 等于 3
 
 # The empty function should not cause a syntax error.
 ->
@@ -31,7 +31,7 @@ ok y.x() is 3
 
 # with multiple single-line functions on the same line.
 func = (x) -> (x) -> (x) -> x
-ok func(1)(2)(3) is 3
+ok func(1)(2)(3) 等于 3
 
 # Make incorrect indentation safe.
 func = ->
@@ -43,7 +43,7 @@ eq func(), 5
 
 # Ensure that functions with the same name don't clash with helper functions.
 del = -> 5
-ok del() is 5
+ok del() 等于 5
 
 
 # Bound Function Definition
@@ -248,7 +248,7 @@ test "#1844: bound functions in nested comprehensions causing empty var statemen
 
 test "#1859: inline function bodies shouldn't modify prior postfix ifs", ->
   list = [1, 2, 3]
-  ok 真 如果 list.some (x) -> x is 2
+  ok 真 如果 list.some (x) -> x 等于 2
 
 test "#2258: allow whitespace-style parameter lists in function definitions", ->
   func = (

@@ -34,17 +34,17 @@ test "classes with a four-level inheritance chain", ->
 
   result = (new ThirdChild).func 'four'
 
-  ok result is 'zero/one/two/three/four'
-  ok Base.static('word') is 'static/word'
+  ok result 等于 'zero/one/two/three/four'
+  ok Base.static('word') 等于 'static/word'
 
   FirstChild::func = (string) ->
     super('one/').length + string
 
   result = (new ThirdChild).func 'four'
 
-  ok result is '9two/three/four'
+  ok result 等于 '9two/three/four'
 
-  ok (new ThirdChild).array.join(' ') is '1 2 3'
+  ok (new ThirdChild).array.join(' ') 等于 '1 2 3'
 
 
 test "constructors with inheritance and super", ->
@@ -63,7 +63,7 @@ test "constructors with inheritance and super", ->
     constructor: ->
       identity super 'sub'
 
-  ok (new SubClass).prop is 'top-super-sub'
+  ok (new SubClass).prop 等于 'top-super-sub'
 
 
 test "Overriding the static property new doesn't clobber Function::new", ->
@@ -78,9 +78,9 @@ test "Overriding the static property new doesn't clobber Function::new", ->
 
   Function.prototype.new = -> new this arguments...
 
-  ok (TwoClass.new('three')).name is 'three'
-  ok (new OneClass).function is 'function'
-  ok OneClass.new is 'new'
+  ok (TwoClass.new('three')).name 等于 'three'
+  ok (new OneClass).function 等于 'function'
+  ok OneClass.new 等于 'new'
 
   delete Function.prototype.new
 
@@ -112,9 +112,9 @@ test "basic classes, again, but in the manual prototype style", ->
 
   result = (new ThirdChild).func 'four'
 
-  ok result is 'zero/one/two/three/four'
+  ok result 等于 'zero/one/two/three/four'
 
-  ok (new ThirdChild)['func-func']('thing') is 'dynamic-thing'
+  ok (new ThirdChild)['func-func']('thing') 等于 'dynamic-thing'
 
 
 test "super with plain ol' prototypes", ->
@@ -155,7 +155,7 @@ test "super() calls in constructors of classes that are defined as object proper
     constructor: (name) -> super
 
   maya = new Hive.Bee 'Maya'
-  ok maya.name is 'Maya'
+  ok maya.name 等于 'Maya'
 
 
 test "classes with JS-keyword properties", ->
@@ -165,8 +165,8 @@ test "classes with JS-keyword properties", ->
     name: -> @class
 
   instance = new Class
-  ok instance.class is 'class'
-  ok instance.name() is 'class'
+  ok instance.class 等于 'class'
+  ok instance.name() 等于 'class'
 
 
 test "Classes with methods that are pre-bound to the instance, or statically, to the class", ->
@@ -185,11 +185,11 @@ test "Classes with methods that are pre-bound to the instance, or statically, to
   fido  = new Dog('Fido')
   fido.bark = spark.bark
 
-  ok fido.bark() is 'Spark woofs!'
+  ok fido.bark() 等于 'Spark woofs!'
 
   obj = func: Dog.static
 
-  ok obj.func().name is 'Dog'
+  ok obj.func().name 等于 'Dog'
 
 
 test "a bound function in a bound function", ->
@@ -217,7 +217,7 @@ test "contructor called with varargs", ->
   list = [3, 2, 1]
   conn = new Connection list...
   ok conn instanceof Connection
-  ok conn.out() is '3-2-1'
+  ok conn.out() 等于 '3-2-1'
 
 
 test "calling super and passing along all arguments", ->
@@ -230,7 +230,7 @@ test "calling super and passing along all arguments", ->
 
   c = new Child
   c.method 1, 2, 3, 4
-  ok c.args.join(' ') is '1 2 3 4'
+  ok c.args.join(' ') 等于 '1 2 3 4'
 
 
 test "classes wrapped in decorators", ->
@@ -242,8 +242,8 @@ test "classes wrapped in decorators", ->
   func class Test
     prop2: 'value2'
 
-  ok (new Test).prop  is 'value'
-  ok (new Test).prop2 is 'value2'
+  ok (new Test).prop  等于 'value'
+  ok (new Test).prop2 等于 'value2'
 
 
 test "anonymous classes", ->
@@ -253,7 +253,7 @@ test "anonymous classes", ->
       method: -> 'value'
 
   instance = new obj.klass
-  ok instance.method() is 'value'
+  ok instance.method() 等于 'value'
 
 
 test "Implicit objects as static properties", ->
@@ -263,8 +263,8 @@ test "Implicit objects as static properties", ->
       one: 1
       two: 2
 
-  ok Static.static.one is 1
-  ok Static.static.two is 2
+  ok Static.static.one 等于 1
+  ok Static.static.two 等于 2
 
 
 test "nothing classes", ->
@@ -365,7 +365,7 @@ test "mild metaprogramming", ->
 
   robby = new Robot
 
-  ok robby.power() is undefined
+  ok robby.power() 等于 undefined
 
   robby.power 11
   robby.speed Infinity
@@ -452,14 +452,14 @@ test "ensure that constructors invoked with splats return a new object", ->
 
   ok type 且 type instanceof Type
   ok type.args 且 type.args instanceof Array
-  ok v is args[i] for v, i in type.args
+  ok v 等于 args[i] for v, i in type.args
 
   Type1 = (@a, @b, @c) ->
   type1 = new Type1 args...
 
   ok type1 instanceof   Type1
   eq type1.constructor, Type1
-  ok type1.a is args[0] 且 type1.b is args[1] 且 type1.c is args[2]
+  ok type1.a 等于 args[0] 且 type1.b 等于 args[1] 且 type1.c 等于 args[2]
 
   # Ensure that constructors invoked with splats cache the function.
   called = 0
@@ -468,7 +468,7 @@ test "ensure that constructors invoked with splats return a new object", ->
 
 test "`new` shouldn't add extra parens", ->
 
-  ok new Date().constructor is Date
+  ok new Date().constructor 等于 Date
 
 
 test "`new` works against bare function", ->
@@ -636,7 +636,7 @@ test "#1534: class then 'use strict'", ->
   nonce = {}
   error = 'do -> ok this'
   strictTest = "do ->'use strict';#{error}"
-  返回 unless (try CoffeeScript.run strictTest, bare: 真 catch e then nonce) is nonce
+  返回 unless (try CoffeeScript.run strictTest, bare: 真 catch e then nonce) 等于 nonce
 
   throws -> CoffeeScript.run "class then 'use strict';#{error}", bare: 真
   doesNotThrow -> CoffeeScript.run "class then #{error}", bare: 真
@@ -740,7 +740,7 @@ test "#2359: extending native objects that use other typed constructors requires
 
   brokenArray = new BrokenArray
   ok brokenArray not instanceof BrokenArray
-  ok typeof brokenArray.method is 'undefined'
+  ok typeof brokenArray.method 等于 'undefined'
 
   class WorkingArray extends Array
     constructor: -> super

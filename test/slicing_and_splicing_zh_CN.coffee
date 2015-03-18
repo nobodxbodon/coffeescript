@@ -48,11 +48,11 @@ test "#930, #835, #831, #746 #624: inclusive slices to -1 should slice to end", 
 
 test "string slicing", ->
   str = "abcdefghijklmnopqrstuvwxyz"
-  ok str[1...1] is ""
-  ok str[1..1] is "b"
-  ok str[1...5] is "bcde"
-  ok str[0..4] is "abcde"
-  ok str[-5..] is "vwxyz"
+  ok str[1...1] 等于 ""
+  ok str[1..1] 等于 "b"
+  ok str[1...5] 等于 "bcde"
+  ok str[0..4] 等于 "abcde"
+  ok str[-5..] 等于 "vwxyz"
 
 test "#1722: operator precedence in unbounded slice compilation", ->
   list = [0..9]

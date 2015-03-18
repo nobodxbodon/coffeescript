@@ -34,9 +34,9 @@ eq Number::toString, 42.toString
 
 # Decimal number literals.
 value = .25 + .75
-ok value is 1
+ok value 等于 1
 value = 0.0 + -.25 - -.75 + 0.0
-ok value is 0.5
+ok value 等于 0.5
 
 #764: Numbers should be indexable
 eq Number::toString,   4['toString']
