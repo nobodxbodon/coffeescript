@@ -15,6 +15,12 @@ bin/cake build
 bin/cake test
 ```
 
+4) 运行示例：
+
+```shell
+bin/coffee test/demo/fibonacci.coffee
+```
+
 注：开发时所有含有 中文 字符 的源码文件都改成了utf-8
 
             {
