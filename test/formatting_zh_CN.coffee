@@ -222,14 +222,14 @@ test "#1299: Disallow token misnesting", ->
       [{
          ]}
     '''
-    ok no
+    ok 伪
   catch e
     eq 'unmatched ]', e.message
 
 test "#2981: Enforce initial indentation", ->
   try
     CoffeeScript.compile '  a\nb-'
-    ok no
+    ok 伪
   catch e
     eq 'missing indentation', e.message
 

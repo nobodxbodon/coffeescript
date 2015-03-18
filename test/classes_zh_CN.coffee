@@ -697,7 +697,7 @@ test "#2052: classes should work in strict mode", ->
       'use strict'
       class A
   catch e
-    ok no
+    ok 伪
 
 test "directives in class with extends ", ->
   strictTest = """

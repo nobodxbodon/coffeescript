@@ -572,15 +572,15 @@ test "#2292, b: f (z),(x)", ->
 test "#2297, Different behaviors on interpreting literal", ->
   foo = (x, y) -> y
   bar =
-    baz: foo 100, on
+    baz: foo 100, 真
 
-  eq bar.baz, on
+  eq bar.baz, 真
 
   qux = (x) -> x
   quux = qux
     corge: foo 100, 真
 
-  eq quux.corge, on
+  eq quux.corge, 真
 
   xyzzy =
     e: 1

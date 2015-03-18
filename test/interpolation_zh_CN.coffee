@@ -132,7 +132,7 @@ ok b 等于 "basic heredoc \#{val}\non two lines"
 
 eq 'multiline nested "interpolations" work', """multiline #{
   "nested #{(->
-    ok yes
+    ok 真
     "\"interpolations\""
   )()}"
 } work"""

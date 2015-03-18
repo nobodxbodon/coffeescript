@@ -298,7 +298,7 @@ test "Implicit objects, functions and arrays", ->
     one: 1
     two: 2
     three: first second ->
-      no
+      伪
     , ->
       3
     3
@@ -309,7 +309,7 @@ test "Implicit objects, functions and arrays", ->
   eq bar[4], 3
 
 test "#2549, Brace-less Object Literal as a Second Operand on a New Line", ->
-  foo = no or
+  foo = 伪 or
     one: 1
     two: 2
     three: 3
@@ -389,7 +389,7 @@ test "#1871: Special case for IMPLICIT_END in the middle of an implicit object",
 
 test "#1871: implicit object closed by IMPLICIT_END in implicit returns", ->
   ob = do ->
-    a: 1 如果 no
+    a: 1 如果 伪
   eq ob, undefined
 
   # instead these return an object

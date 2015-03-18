@@ -54,11 +54,11 @@ test "division is not confused for a regular expression", ->
   a += ' ' until /   /.test a
   eq a, '   '
 
-  a = 如果 /=/.test '=' then 真 否则 no
+  a = 如果 /=/.test '=' then 真 否则 伪
   eq a, 真
 
-  a = 如果 !/=/.test '=' then 真 否则 no
-  eq a, no
+  a = 如果 !/=/.test '=' then 真 否则 伪
+  eq a, 伪
 
   #3182:
   match = 'foo=bar'.match /=/

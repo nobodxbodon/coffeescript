@@ -163,7 +163,7 @@ test "suppressed indentation via assignment", ->
   nonce = {}
   result =
     如果      伪 then undefined
-    否则 如果 no    then undefined
+    否则 如果 伪    then undefined
     否则 如果 0     then undefined
     否则 如果 1 < 0 then undefined
     否则               id(

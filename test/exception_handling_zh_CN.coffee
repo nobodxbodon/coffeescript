@@ -117,13 +117,13 @@ test "try/catch with destructuring the exception object", ->
 test "Try catch finally as implicit arguments", ->
   first = (x) -> x
 
-  foo = no
+  foo = 伪
   try
     first try iamwhoiam() finally foo = 真
   catch e
   eq foo, 真
 
-  bar = no
+  bar = 伪
   try
     first try iamwhoiam() catch e finally
     bar = 真
