@@ -282,7 +282,7 @@ test "Comprehensions only wrap their last line in a closure, allowing other line
   ok func()[0][0] 等于 1
 
   i = 6
-  odds = while i--
+  odds = 每当 i--
     continue unless i & 1
     i
 
@@ -498,7 +498,7 @@ test "#2007: Return object literal from comprehension", ->
   eq "foo2", y[1].foo
 
   x = 2
-  y = while x
+  y = 每当 x
     x: --x
   eq 2, y.length
   eq 1, y[0].x

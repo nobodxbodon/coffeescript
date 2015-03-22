@@ -157,6 +157,7 @@ exports.Lexer = class Lexer
         when 'if'                then 'IF'
         when 'else'              then 'ELSE'
         when 'return'            then 'RETURN'
+        when 'while'             then 'WHILE'
         else  tag
 
     tagToken = @token tag, id, 0, idLength
@@ -765,6 +766,7 @@ COFFEE_ALIAS_MAP =
   off  : 'false'
   如果  : 'if'
   否则  : 'else'
+  每当  : 'while'
   真   : 'true'
   伪   : 'false'
   且   : '&&'

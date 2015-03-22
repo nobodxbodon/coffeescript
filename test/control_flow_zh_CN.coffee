@@ -203,18 +203,18 @@ test "#3056: multiple postfix conditionals", ->
 test "basic `while` loops", ->
 
   i = 5
-  list = while i -= 1
+  list = 每当 i -= 1
     i * 2
   ok list.join(' ') 等于 "8 6 4 2"
 
   i = 5
-  list = (i * 3 while i -= 1)
+  list = (i * 3 每当 i -= 1)
   ok list.join(' ') 等于 "12 9 6 3"
 
   i = 5
   func   = (num) -> i -= num
   assert = -> ok i < 5 > 0
-  results = while func 1
+  results = 每当 func 1
     assert()
     i
   ok results.join(' ') 等于 '4 3 2 1'
@@ -227,17 +227,17 @@ test "basic `while` loops", ->
 
 test "Issue 759: `if` within `while` condition", ->
 
-  2 while 如果 1 then 0
+  2 每当 如果 1 then 0
 
 
 test "assignment inside the condition of a `while` loop", ->
 
   nonce = {}
   count = 1
-  a = nonce while count--
+  a = nonce 每当 count--
   eq nonce, a
   count = 1
-  while count--
+  每当 count--
     b = nonce
   eq nonce, b
 
@@ -245,7 +245,7 @@ test "assignment inside the condition of a `while` loop", ->
 test "While over break.", ->
 
   i = 0
-  result = while i < 10
+  result = 每当 i < 10
     i++
     break
   arrayEq result, []
@@ -254,7 +254,7 @@ test "While over break.", ->
 test "While over continue.", ->
 
   i = 0
-  result = while i < 10
+  result = 每当 i < 10
     i++
     continue
   arrayEq result, []
@@ -291,7 +291,7 @@ test "break at the top level", ->
 test "break *not* at the top level", ->
   someFunc = ->
     i = 0
-    while ++i < 3
+    每当 ++i < 3
       result = i
       break 如果 i > 1
     result
@@ -401,7 +401,7 @@ test "Should be able to use `@properties` within the switch cases.", ->
 test "Switch with break as the return value of a loop.", ->
 
   i = 10
-  results = while i > 0
+  results = 每当 i > 0
     i--
     switch i % 2
       when 1 then i
