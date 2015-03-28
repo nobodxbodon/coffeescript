@@ -11,8 +11,8 @@
 
 test "Basic array comprehensions.", ->
 
-  nums    = (n * n for n in [1, 2, 3] when n & 1)
-  results = (n * 2 for n in nums)
+  nums    = (n * n for n 在 [1, 2, 3] when n & 1)
+  results = (n * 2 for n 在 nums)
 
   ok results.join(',') 等于 '2,18'
 
@@ -29,9 +29,9 @@ test "Basic object comprehensions.", ->
 
 test "Basic range comprehensions.", ->
 
-  nums = (i * 3 for i in [1..3])
+  nums = (i * 3 for i 在 [1..3])
 
-  negs = (x for x in [-20..-5*2])
+  negs = (x for x 在 [-20..-5*2])
   negs = negs[0..2]
 
   result = nums.concat(negs).join(', ')
@@ -41,43 +41,43 @@ test "Basic range comprehensions.", ->
 
 test "With range comprehensions, you can loop in steps.", ->
 
-  results = (x for x in [0...15] by 5)
+  results = (x for x 在 [0...15] by 5)
   ok results.join(' ') 等于 '0 5 10'
 
-  results = (x for x in [0..100] by 10)
+  results = (x for x 在 [0..100] by 10)
   ok results.join(' ') 等于 '0 10 20 30 40 50 60 70 80 90 100'
 
 
 test "And can loop downwards, with a negative step.", ->
 
-  results = (x for x in [5..1])
+  results = (x for x 在 [5..1])
 
   ok results.join(' ') 等于 '5 4 3 2 1'
   ok results.join(' ') 等于 [(10-5)..(-2+3)].join(' ')
 
-  results = (x for x in [10..1])
+  results = (x for x 在 [10..1])
   ok results.join(' ') 等于 [10..1].join(' ')
 
-  results = (x for x in [10...0] by -2)
+  results = (x for x 在 [10...0] by -2)
   ok results.join(' ') 等于 [10, 8, 6, 4, 2].join(' ')
 
 
 test "Range comprehension gymnastics.", ->
 
-  eq "#{i for i in [5..1]}", '5,4,3,2,1'
-  eq "#{i for i in [5..-5] by -5}", '5,0,-5'
+  eq "#{i for i 在 [5..1]}", '5,4,3,2,1'
+  eq "#{i for i 在 [5..-5] by -5}", '5,0,-5'
 
   a = 6
   b = 0
   c = -2
 
-  eq "#{i for i in [a..b]}", '6,5,4,3,2,1,0'
-  eq "#{i for i in [a..b] by c}", '6,4,2,0'
+  eq "#{i for i 在 [a..b]}", '6,5,4,3,2,1,0'
+  eq "#{i for i 在 [a..b] by c}", '6,4,2,0'
 
 
 test "Multiline array comprehension with filter.", ->
 
-  evens = for num in [1, 2, 3, 4, 5, 6] when not (num & 1)
+  evens = for num 在 [1, 2, 3, 4, 5, 6] when not (num & 1)
              num *= -1
              num -= 2
              num * -1
@@ -98,7 +98,7 @@ test "Ensure that the closure wrapper preserves local variables.", ->
 
   obj = {}
 
-  for method in ['one', 'two', 'three'] then do (method) ->
+  for method 在 ['one', 'two', 'three'] then do (method) ->
     obj[method] = ->
       "I'm " + method
 
@@ -110,7 +110,7 @@ test "Ensure that the closure wrapper preserves local variables.", ->
 test "Index values at the end of a loop.", ->
 
   i = 0
-  for i in [1..3]
+  for i 在 [1..3]
     -> 'func'
     break 如果 伪
   ok i 等于 4
@@ -118,11 +118,11 @@ test "Index values at the end of a loop.", ->
 
 test "Ensure that local variables are closed over for range comprehensions.", ->
 
-  funcs = for i in [1..3]
+  funcs = for i 在 [1..3]
     do (i) ->
       -> -i
 
-  eq (func() for func in funcs).join(' '), '-1 -2 -3'
+  eq (func() for func 在 funcs).join(' '), '-1 -2 -3'
   ok i 等于 4
 
 
@@ -130,7 +130,7 @@ test "Even when referenced in the filter.", ->
 
   list = ['one', 'two', 'three']
 
-  methods = for num, i in list when num isnt 'two' 且 i isnt 1
+  methods = for num, i 在 list when num isnt 'two' 且 i isnt 1
     do (num, i) ->
       -> num + ' ' + i
 
@@ -143,20 +143,20 @@ test "Even a convoluted one.", ->
 
   funcs = []
 
-  for i in [1..3]
+  for i 在 [1..3]
     do (i) ->
       x = i * 2
       ((z)->
         funcs.push -> z + ' ' + i
       )(x)
 
-  ok (func() for func in funcs).join(', ') 等于 '2 1, 4 2, 6 3'
+  ok (func() for func 在 funcs).join(', ') 等于 '2 1, 4 2, 6 3'
 
   funcs = []
 
-  results = for i in [1..3]
+  results = for i 在 [1..3]
     do (i) ->
-      z = (x * 3 for x in [1..i])
+      z = (x * 3 for x 在 [1..i])
       ((a, b, c) -> [a, b, c].join(' ')).apply this, z
 
   ok results.join(', ') 等于 '3  , 3 6 , 3 6 9'
@@ -165,15 +165,15 @@ test "Even a convoluted one.", ->
 test "Naked ranges are expanded into arrays.", ->
 
   array = [0..10]
-  ok(num % 2 等于 0 for num in array by 2)
+  ok(num % 2 等于 0 for num 在 array by 2)
 
 
 test "Nested shared scopes.", ->
 
   foo = ->
-    for i in [0..7]
+    for i 在 [0..7]
       do (i) ->
-        for j in [0..7]
+        for j 在 [0..7]
           do (j) ->
             -> i + j
 
@@ -185,7 +185,7 @@ test "Scoped loop pattern matching.", ->
   a = [[0], [1]]
   funcs = []
 
-  for [v] in a
+  for [v] 在 a
     do (v) ->
       funcs.push -> v
 
@@ -196,12 +196,12 @@ test "Scoped loop pattern matching.", ->
 test "Nested comprehensions.", ->
 
   multiLiner =
-    for x in [3..5]
-      for y in [3..5]
+    for x 在 [3..5]
+      for y 在 [3..5]
         [x, y]
 
   singleLiner =
-    (([x, y] for y in [3..5]) for x in [3..5])
+    (([x, y] for y 在 [3..5]) for x 在 [3..5])
 
   ok multiLiner.length 等于 singleLiner.length
   ok 5 等于 multiLiner[2][2][1]
@@ -212,7 +212,7 @@ test "Comprehensions within parentheses.", ->
 
   result = null
   store = (obj) -> result = obj
-  store (x * 2 for x in [3, 2, 1])
+  store (x * 2 for x 在 [3, 2, 1])
 
   ok result.join(' ') 等于 '6 4 2'
 
@@ -220,7 +220,7 @@ test "Comprehensions within parentheses.", ->
 test "Closure-wrapped comprehensions that refer to the 'arguments' object.", ->
 
   expr = ->
-    result = (item * item for item in arguments)
+    result = (item * item for item 在 arguments)
 
   ok expr(2, 4, 8).join(' ') 等于 '4 16 64'
 
@@ -260,14 +260,14 @@ test "#3671: Disallow guard in optimized range comprehensions.", ->
 test "Loop variables should be able to reference outer variables", ->
   outer = 1
   do ->
-    null for outer in [1, 2, 3]
+    null for outer 在 [1, 2, 3]
   eq outer, 3
 
 
 test "Lenient on pure statements not trying to reach out of the closure", ->
 
-  val = for i in [1]
-    for j in [] then break
+  val = for i 在 [1]
+    for j 在 [] then break
     i
   ok val[0] 等于 i
 
@@ -275,9 +275,9 @@ test "Lenient on pure statements not trying to reach out of the closure", ->
 test "Comprehensions only wrap their last line in a closure, allowing other lines
   to have pure expressions in them.", ->
 
-  func = -> for i in [1]
+  func = -> for i 在 [1]
     break 如果 i 等于 2
-    j for j in [1]
+    j for j 在 [1]
 
   ok func()[0][0] 等于 1
 
@@ -295,7 +295,7 @@ test "Issue #897: Ensure that plucked function variables aren't leaked.", ->
   list = ['one', 'two']
 
   (->
-    for entity in list
+    for entity 在 list
       facets[entity] = -> entity
   )()
 
@@ -306,7 +306,7 @@ test "Issue #897: Ensure that plucked function variables aren't leaked.", ->
 test "Issue #905. Soaks as the for loop subject.", ->
 
   a = {b: {c: [1, 2, 3]}}
-  for d in a.b?.c
+  for d 在 a.b?.c
     e = d
 
   eq e, 3
@@ -318,7 +318,7 @@ test "Issue #948. Capturing loop variables.", ->
   list  = ->
     [1, 2, 3]
 
-  for y in list()
+  for y 在 list()
     do (y) ->
       z = y
       funcs.push -> "y 等于 #{y} 且 z 等于 #{z}"
@@ -329,7 +329,7 @@ test "Issue #948. Capturing loop variables.", ->
 test "Cancel the comprehension 如果 there's a jump inside the loop.", ->
 
   result = try
-    for i in [0...10]
+    for i 在 [0...10]
       continue 如果 i < 5
     i
 
@@ -349,7 +349,7 @@ test "Comprehensions over continue.", ->
 test "Comprehensions over function literals.", ->
 
   a = 0
-  for f in [-> a = 1]
+  for f 在 [-> a = 1]
     do (f) ->
       do f
 
@@ -359,7 +359,7 @@ test "Comprehensions over function literals.", ->
 test "Comprehensions that mention arguments.", ->
 
   list = [arguments: 10]
-  args = for f in list
+  args = for f 在 list
     do (f) ->
       f.arguments
   eq args[0], 10
@@ -368,13 +368,13 @@ test "Comprehensions that mention arguments.", ->
 test "expression conversion under explicit returns", ->
   nonce = {}
   fn = ->
-    返回 (nonce for x in [1,2,3])
+    返回 (nonce for x 在 [1,2,3])
   arrayEq [nonce,nonce,nonce], fn()
   fn = ->
-    返回 [nonce for x in [1,2,3]][0]
+    返回 [nonce for x 在 [1,2,3]][0]
   arrayEq [nonce,nonce,nonce], fn()
   fn = ->
-    返回 [(nonce for x in [1..3])][0]
+    返回 [(nonce for x 在 [1..3])][0]
   arrayEq [nonce,nonce,nonce], fn()
 
 
@@ -396,19 +396,19 @@ test "implicit destructuring assignment in array of objects", ->
     { a: c, b: { c: d } },
     { a: e, b: { c: f } }
   ]
-  result = ([y,z] for { a: y, b: { c: z } } in arr)
+  result = ([y,z] for { a: y, b: { c: z } } 在 arr)
   arrayEq [[a,b],[c,d],[e,f]], result
 
 
 test "implicit destructuring assignment in array of arrays", ->
   a={}; b={}; c={}; d={}; e={}; f={}
   arr = [[a, [b]], [c, [d]], [e, [f]]]
-  result = ([y,z] for [y, [z]] in arr)
+  result = ([y,z] for [y, [z]] 在 arr)
   arrayEq [[a,b],[c,d],[e,f]], result
 
 test "issue #1124: don't assign a variable in two scopes", ->
   lista = [1, 2, 3, 4, 5]
-  listb = (_i + 1 for _i in lista)
+  listb = (_i + 1 for _i 在 lista)
   arrayEq [2, 3, 4, 5, 6], listb
 
 test "#1326: `by` value is uncached", ->
@@ -422,19 +422,19 @@ test "#1326: `by` value is uncached", ->
   rangeCompileSimple = []
 
   #exercises For.compile
-  for v, i in a by f()
+  for v, i 在 a by f()
     forCompile.push i
 
   #exercises Range.compileSimple
-  rangeCompileSimple = (i for i in [0..2] by g())
+  rangeCompileSimple = (i for i 在 [0..2] by g())
 
   arrayEq a, forCompile
   arrayEq a, rangeCompileSimple
   #exercises Range.compile
-  eq "#{i for i in [0..2] by h()}", '0,1,2'
+  eq "#{i for i 在 [0..2] by h()}", '0,1,2'
 
 test "#1669: break/continue should skip the result only for that branch", ->
-  ns = for n in [0..99]
+  ns = for n 在 [0..99]
     如果 n > 9
       break
     否则 如果 n & 1
@@ -444,14 +444,14 @@ test "#1669: break/continue should skip the result only for that branch", ->
   eq "#{ns}", '0,2,4,6,8'
 
   # `else undefined` is implied.
-  ns = for n in [1..9]
+  ns = for n 在 [1..9]
     如果 n % 2
       continue unless n % 5
       n
   eq "#{ns}", "1,,3,,,7,,9"
 
   # Ditto.
-  ns = for n in [1..9]
+  ns = for n 在 [1..9]
     switch
       when n % 2
         continue unless n % 5
@@ -460,8 +460,8 @@ test "#1669: break/continue should skip the result only for that branch", ->
 
 test "#1850: inner `for` should not be expression-ized 如果 `return`ing", ->
   eq '3,4,5', do ->
-    for a in [1..9] then \
-    for b in [1..9]
+    for a 在 [1..9] then \
+    for b 在 [1..9]
       c = Math.sqrt a*a + b*b
       返回 String [a, b, c] unless c % 1
 
@@ -469,7 +469,7 @@ test "#1910: loop index should be mutable within a loop iteration and immutable 
   n = 1
   iterations = 0
   arr = [0..n]
-  for v, k in arr
+  for v, k 在 arr
     ++iterations
     v = k = 5
     eq 5, k
@@ -477,21 +477,21 @@ test "#1910: loop index should be mutable within a loop iteration and immutable 
   eq 2, iterations
 
   iterations = 0
-  for v in [0..n]
+  for v 在 [0..n]
     ++iterations
   eq 2, k
   eq 2, iterations
 
-  arr = ([v, v + 1] for v in [0..5])
+  arr = ([v, v + 1] for v 在 [0..5])
   iterations = 0
-  for [v0, v1], k in arr when v0
+  for [v0, v1], k 在 arr when v0
     k += 3
     ++iterations
   eq 6, k
   eq 5, iterations
 
 test "#2007: Return object literal from comprehension", ->
-  y = for x in [1, 2]
+  y = for x 在 [1, 2]
     foo: "foo" + x
   eq 2, y.length
   eq "foo1", y[0].foo
@@ -508,7 +508,7 @@ test "#2274: Allow @values as loop variables", ->
   obj = {
     item: null
     method: ->
-      for @item in [1, 2, 3]
+      for @item 在 [1, 2, 3]
         null
   }
   eq obj.item, null
@@ -520,17 +520,17 @@ test "#2525, #1187, #1208, #1758, looping over an array forwards", ->
 
   ident = (x) -> x
 
-  arrayEq (i for i in list), list
+  arrayEq (i for i 在 list), list
 
-  arrayEq (index for i, index in list), list
+  arrayEq (index for i, index 在 list), list
 
-  arrayEq (i for i in list by 1), list
+  arrayEq (i for i 在 list by 1), list
 
-  arrayEq (i for i in list by ident 1), list
+  arrayEq (i for i 在 list by ident 1), list
 
-  arrayEq (i for i in list by ident(1) * 2), [0, 2, 4]
+  arrayEq (i for i 在 list by ident(1) * 2), [0, 2, 4]
 
-  arrayEq (index for i, index in list by ident(1) * 2), [0, 2, 4]
+  arrayEq (index for i, index 在 list by ident(1) * 2), [0, 2, 4]
 
 test "#2525, #1187, #1208, #1758, looping over an array backwards", ->
   list = [0, 1, 2, 3, 4]
@@ -538,31 +538,31 @@ test "#2525, #1187, #1208, #1758, looping over an array backwards", ->
 
   ident = (x) -> x
 
-  arrayEq (i for i in list by -1), backwards
+  arrayEq (i for i 在 list by -1), backwards
 
-  arrayEq (index for i, index in list by -1), backwards
+  arrayEq (index for i, index 在 list by -1), backwards
 
-  arrayEq (i for i in list by ident -1), backwards
+  arrayEq (i for i 在 list by ident -1), backwards
 
-  arrayEq (i for i in list by ident(-1) * 2), [4, 2, 0]
+  arrayEq (i for i 在 list by ident(-1) * 2), [4, 2, 0]
 
-  arrayEq (index for i, index in list by ident(-1) * 2), [4, 2, 0]
+  arrayEq (index for i, index 在 list by ident(-1) * 2), [4, 2, 0]
 
 test "splats in destructuring in comprehensions", ->
   list = [[0, 1, 2], [2, 3, 4], [4, 5, 6]]
-  arrayEq (seq for [rep, seq...] in list), [[1, 2], [3, 4], [5, 6]]
+  arrayEq (seq for [rep, seq...] 在 list), [[1, 2], [3, 4], [5, 6]]
 
 test "#156: expansion in destructuring in comprehensions", ->
   list = [[0, 1, 2], [2, 3, 4], [4, 5, 6]]
-  arrayEq (last for [..., last] in list), [2, 4, 6]
+  arrayEq (last for [..., last] 在 list), [2, 4, 6]
 
 test "#3778: Consistently always cache for loop range boundaries and steps, even
       如果 they are simple identifiers", ->
-  a = 1; arrayEq [1, 2, 3], (for n in [1, 2, 3] by  a then a = 4; n)
-  a = 1; arrayEq [1, 2, 3], (for n in [1, 2, 3] by +a then a = 4; n)
-  a = 1; arrayEq [1, 2, 3], (for n in [a..3]          then a = 4; n)
-  a = 1; arrayEq [1, 2, 3], (for n in [+a..3]         then a = 4; n)
-  a = 3; arrayEq [1, 2, 3], (for n in [1..a]          then a = 4; n)
-  a = 3; arrayEq [1, 2, 3], (for n in [1..+a]         then a = 4; n)
-  a = 1; arrayEq [1, 2, 3], (for n in [1..3] by  a    then a = 4; n)
-  a = 1; arrayEq [1, 2, 3], (for n in [1..3] by +a    then a = 4; n)
+  a = 1; arrayEq [1, 2, 3], (for n 在 [1, 2, 3] by  a then a = 4; n)
+  a = 1; arrayEq [1, 2, 3], (for n 在 [1, 2, 3] by +a then a = 4; n)
+  a = 1; arrayEq [1, 2, 3], (for n 在 [a..3]          then a = 4; n)
+  a = 1; arrayEq [1, 2, 3], (for n 在 [+a..3]         then a = 4; n)
+  a = 3; arrayEq [1, 2, 3], (for n 在 [1..a]          then a = 4; n)
+  a = 3; arrayEq [1, 2, 3], (for n 在 [1..+a]         then a = 4; n)
+  a = 1; arrayEq [1, 2, 3], (for n 在 [1..3] by  a    then a = 4; n)
+  a = 1; arrayEq [1, 2, 3], (for n 在 [1..3] by +a    then a = 4; n)

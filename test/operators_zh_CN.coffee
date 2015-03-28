@@ -210,17 +210,17 @@ test "#1714: lexer bug with raw range `for` followed by `in`", ->
   0 for [1..2]
   ok not ('a' in ['b'])
 
-  0 for [1..2]; ok not ('a' in ['b'])
+  0 for [1..2]; ok not ('a' 在 ['b'])
 
   0 for [1..10] # comment ending
-  ok not ('a' in ['b'])
+  ok not ('a' 在 ['b'])
 
 test "#1099: statically determined `not in []` reporting incorrect result", ->
-  ok 0 not in []
+  ok 0 not 在 []
 
 test "#1099: make sure expression tested gets evaluted when array is empty", ->
   a = 0
-  (do -> a = 1) in []
+  (do -> a = 1) 在 []
   eq a, 1
 
 # Chained Comparison
@@ -409,17 +409,17 @@ test "#3598: Unary + and - coerce the operand once when it is an identifier", ->
   assertOneCoercion (a) ->
     ok -2 <= a / 2 < 2
 
-  arrayEq [0], (n for n in [0] by 1)
-  arrayEq [0], (n for n in [0] by +1)
-  arrayEq [0], (n for n in [0] by -1)
+  arrayEq [0], (n for n 在 [0] by 1)
+  arrayEq [0], (n for n 在 [0] by +1)
+  arrayEq [0], (n for n 在 [0] by -1)
   assertOneCoercion (a) ->
-    arrayEq [0], (n for n in [0] by +a)
+    arrayEq [0], (n for n 在 [0] by +a)
   assertOneCoercion (a) ->
-    arrayEq [0], (n for n in [0] by -a)
+    arrayEq [0], (n for n 在 [0] by -a)
   assertOneCoercion (a) ->
-    arrayEq [0], (n for n in [0] by ~a)
+    arrayEq [0], (n for n 在 [0] by ~a)
   assertOneCoercion (a) ->
-    arrayEq [0], (n for n in [0] by a * 2 / 2)
+    arrayEq [0], (n for n 在 [0] by a * 2 / 2)
 
   ok 1 in [0, 1]
   ok +1 in [0, 1]

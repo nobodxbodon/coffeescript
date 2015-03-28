@@ -493,12 +493,17 @@ grammar =
   # in fixed-size increments.
   ForSource: [
     o 'FORIN Expression',                               -> source: $2
+    o 'FOR在 Expression',                               -> source: $2
     o 'FOROF Expression',                               -> source: $2, object: yes
     o 'FORIN Expression WHEN Expression',               -> source: $2, guard: $4
+    o 'FOR在 Expression WHEN Expression',               -> source: $2, guard: $4
     o 'FOROF Expression WHEN Expression',               -> source: $2, guard: $4, object: yes
     o 'FORIN Expression BY Expression',                 -> source: $2, step:  $4
+    o 'FOR在 Expression BY Expression',                 -> source: $2, step:  $4
     o 'FORIN Expression WHEN Expression BY Expression', -> source: $2, guard: $4, step: $6
     o 'FORIN Expression BY Expression WHEN Expression', -> source: $2, step:  $4, guard: $6
+    o 'FOR在 Expression WHEN Expression BY Expression', -> source: $2, guard: $4, step: $6
+    o 'FOR在 Expression BY Expression WHEN Expression', -> source: $2, step:  $4, guard: $6
   ]
 
   Switch: [
@@ -611,7 +616,7 @@ operators = [
   ['nonassoc',  'INDENT', 'OUTDENT']
   ['right',     'YIELD']
   ['right',     '=', ':', 'COMPOUND_ASSIGN', 'RETURN', 'THROW', 'EXTENDS']
-  ['right',     'FORIN', 'FOROF', 'BY', 'WHEN']
+  ['right',     'FORIN', 'FOROF', 'FOR在', 'BY', 'WHEN']
   ['right',     'IF', 'ELSE', 'FOR', 'WHILE', 'UNTIL', 'LOOP', 'SUPER', 'CLASS']
   ['left',      'POST_IF']
 ]

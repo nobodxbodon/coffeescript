@@ -1662,6 +1662,7 @@ exports.Op = class Op extends Base
     '==':        '==='
     '!=':        '!=='
     'of':        'in'
+    '在':        'in'
     'yieldfrom': 'yield*'
 
   # The map of invertible operators.

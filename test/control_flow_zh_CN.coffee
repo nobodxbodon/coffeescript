@@ -282,7 +282,7 @@ test "Basic `loop`", ->
 
 
 test "break at the top level", ->
-  for i in [1,2,3]
+  for i 在 [1,2,3]
     result = i
     如果 i == 2
       break
@@ -453,7 +453,7 @@ test "#2367: super in for-loop", ->
 
   class Bar extends Foo
     add: (vals...) ->
-      super val for val in vals
+      super val for val 在 vals
       @sum
 
   eq 10, (new Bar).add 2, 3, 5

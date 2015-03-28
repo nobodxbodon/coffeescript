@@ -130,11 +130,11 @@ test "method calls", ->
 test "Ensure that functions can have a trailing comma in their argument list", ->
 
   mult = (x, mids..., y) ->
-    x *= n for n in mids
+    x *= n for n 在 mids
     x *= y
   #ok mult(1, 2,) is 2
   #ok mult(1, 2, 3,) is 6
-  ok mult(10, (i for i in [1..6])...) 等于 7200
+  ok mult(10, (i for i 在 [1..6])...) 等于 7200
 
 
 test "`@` and `this` should both be able to invoke a method", ->
@@ -419,7 +419,7 @@ test "implicit returns with multiple branches", ->
   nonce = {}
   fn = ->
     如果 伪
-      for a in b
+      for a 在 b
         返回 c 如果 d
     否则
       nonce
@@ -454,7 +454,7 @@ test "don't wrap 'pure' statements in a closure", ->
   nonce = {}
   items = [0, 1, 2, 3, nonce, 4, 5]
   fn = (items) ->
-    for item in items
+    for item 在 items
       返回 item 如果 item 等于 nonce
   eq nonce, fn items
 

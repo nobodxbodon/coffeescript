@@ -65,7 +65,7 @@ test "Python-style octal literal notation '0o777'", ->
   eq Number::toString, 0o777.toString
 
 test "#2060: Disallow uppercase radix prefixes and exponential notation", ->
-  for char in ['b', 'o', 'x', 'e']
+  for char 在 ['b', 'o', 'x', 'e']
     program = "0#{char}0"
     doesNotThrow -> CoffeeScript.compile program, bare: 真
     throws -> CoffeeScript.compile program.toUpperCase(), bare: 真

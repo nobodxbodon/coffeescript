@@ -34,9 +34,9 @@ test "unbounded slicing", ->
   arrayEq shared      , shared[..-1]
   arrayEq shared[0..8], shared[...-1]
 
-  for a in [-shared.length..shared.length]
+  for a 在 [-shared.length..shared.length]
     arrayEq shared[a..] , shared[a...]
-  for a in [-shared.length+1...shared.length]
+  for a 在 [-shared.length+1...shared.length]
     arrayEq shared[..a][...-1] , shared[...a]
 
   arrayEq [1, 2, 3], [1, 2, 3][..]

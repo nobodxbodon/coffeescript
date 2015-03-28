@@ -383,7 +383,7 @@ test "#1871: Special case for IMPLICIT_END in the middle of an implicit object",
 
   result = ident
     one: 1
-    two: 2 for i in [1..3]
+    two: 2 for i 在 [1..3]
 
   eq result.two.join(' '), '2 2 2'
 
@@ -395,12 +395,12 @@ test "#1871: implicit object closed by IMPLICIT_END in implicit returns", ->
   # instead these return an object
   func = ->
     key:
-      i for i in [1, 2, 3]
+      i for i 在 [1, 2, 3]
 
   eq func().key.join(' '), '1 2 3'
 
   func = ->
-    key: (i for i in [1, 2, 3])
+    key: (i for i 在 [1, 2, 3])
 
   eq func().key.join(' '), '1 2 3'
 
@@ -424,17 +424,17 @@ test "#1961, #1974, regression with compound assigning to an implicit object", -
 
 test "#2207: Immediate implicit closes don't close implicit objects", ->
   func = ->
-    key: for i in [1, 2, 3] then i
+    key: for i 在 [1, 2, 3] then i
 
   eq func().key.join(' '), '1 2 3'
 
 test "#3216: For loop declaration as a value of an implicit object", ->
   test = [0..2]
   ob =
-    a: for v, i in test then i
-    b: for v, i in test then i
-    c: for v in test by 1 then v
-    d: for v in test when 真 then v
+    a: for v, i 在 test then i
+    b: for v, i 在 test then i
+    c: for v 在 test by 1 then v
+    d: for v 在 test when 真 then v
   arrayEq ob.a, test
   arrayEq ob.b, test
   arrayEq ob.c, test
