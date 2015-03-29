@@ -617,7 +617,7 @@ operators = [
   ['right',     'YIELD']
   ['right',     '=', ':', 'COMPOUND_ASSIGN', 'RETURN', 'THROW', 'EXTENDS']
   ['right',     'FORIN', 'FOROF', 'FOR在', 'BY', 'WHEN']
-  ['right',     'IF', 'ELSE', 'FOR', 'WHILE', 'UNTIL', 'LOOP', 'SUPER', 'CLASS']
+  ['right',     'IF', 'ELSE', 'FOR', '每个', 'WHILE', 'UNTIL', 'LOOP', 'SUPER', 'CLASS']
   ['left',      'POST_IF']
 ]
 

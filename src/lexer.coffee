@@ -106,7 +106,7 @@ exports.Lexer = class Lexer
     idLength = id.length
     poppedToken = undefined
 
-    if id is 'own' and @tag() is 'FOR'
+    if id is 'own' and (@tag() is 'FOR' or @tag() is '每个')
       @token 'OWN', id
       return id.length
     if id is 'from' and @tag() is 'YIELD'
@@ -122,7 +122,7 @@ exports.Lexer = class Lexer
       tag = id.toUpperCase()
       if tag is 'WHEN' and @tag() in LINE_BREAK
         tag = 'LEADING_WHEN'
-      else if tag is 'FOR'
+      else if tag is 'FOR' or tag is '每个'
         @seenFor = yes
       else if tag is 'UNLESS'
         tag = 'IF'
@@ -158,6 +158,7 @@ exports.Lexer = class Lexer
         when 'else'              then 'ELSE'
         when 'return'            then 'RETURN'
         when 'while'             then 'WHILE'
+        when 'for'               then 'FOR'
         else  tag
 
     tagToken = @token tag, id, 0, idLength
@@ -752,7 +753,7 @@ JS_KEYWORDS = [
 ]
 
 # CoffeeScript-only keywords.
-COFFEE_KEYWORDS = ['undefined', 'then', 'unless', 'until', 'loop', 'of', 'by', 'when', '在']
+COFFEE_KEYWORDS = ['undefined', 'then', 'unless', 'until', 'loop', 'of', 'by', 'when', '在', '每个']
 
 COFFEE_ALIAS_MAP =
   and  : '&&'
@@ -773,6 +774,7 @@ COFFEE_ALIAS_MAP =
   或   : '||'
   返回  : 'return'
   等于  : '=='
+  每个  : 'for'
 
 COFFEE_ALIASES  = (key for key of COFFEE_ALIAS_MAP)
 COFFEE_KEYWORDS = COFFEE_KEYWORDS.concat COFFEE_ALIASES

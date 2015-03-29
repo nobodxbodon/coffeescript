@@ -105,7 +105,7 @@ ok obj.abc().join(' ') 等于 'a b c'
 ok obj.one.length 等于 5
 ok obj.one[4] 等于 4
 ok obj.one[2].a 等于 'b'
-ok (key for key of obj.red).length 等于 2
+ok (key 每个 key of obj.red).length 等于 2
 ok obj.red.orange.yellow.green 等于 'blue'
 ok obj.red.indigo 等于 'violet'
 ok obj.misdent.toString() 等于 ',,,'
@@ -383,7 +383,7 @@ test "#1871: Special case for IMPLICIT_END in the middle of an implicit object",
 
   result = ident
     one: 1
-    two: 2 for i 在 [1..3]
+    two: 2 每个 i 在 [1..3]
 
   eq result.two.join(' '), '2 2 2'
 
@@ -395,12 +395,12 @@ test "#1871: implicit object closed by IMPLICIT_END in implicit returns", ->
   # instead these return an object
   func = ->
     key:
-      i for i 在 [1, 2, 3]
+      i 每个 i 在 [1, 2, 3]
 
   eq func().key.join(' '), '1 2 3'
 
   func = ->
-    key: (i for i 在 [1, 2, 3])
+    key: (i 每个 i 在 [1, 2, 3])
 
   eq func().key.join(' '), '1 2 3'
 
@@ -424,17 +424,17 @@ test "#1961, #1974, regression with compound assigning to an implicit object", -
 
 test "#2207: Immediate implicit closes don't close implicit objects", ->
   func = ->
-    key: for i 在 [1, 2, 3] then i
+    key: 每个 i 在 [1, 2, 3] then i
 
   eq func().key.join(' '), '1 2 3'
 
 test "#3216: For loop declaration as a value of an implicit object", ->
   test = [0..2]
   ob =
-    a: for v, i 在 test then i
-    b: for v, i 在 test then i
-    c: for v 在 test by 1 then v
-    d: for v 在 test when 真 then v
+    a: 每个 v, i 在 test then i
+    b: 每个 v, i 在 test then i
+    c: 每个 v 在 test by 1 then v
+    d: 每个 v 在 test when 真 then v
   arrayEq ob.a, test
   arrayEq ob.b, test
   arrayEq ob.c, test

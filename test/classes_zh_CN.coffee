@@ -197,12 +197,12 @@ test "a bound function in a bound function", ->
   class Mini
     num: 10
     generate: =>
-      for i 在 [1..3]
+      每个 i 在 [1..3]
         =>
           @num
 
   m = new Mini
-  eq (func() for func 在 m.generate()).join(' '), '10 10 10'
+  eq (func() 每个 func 在 m.generate()).join(' '), '10 10 10'
 
 
 test "contructor called with varargs", ->
@@ -452,7 +452,7 @@ test "ensure that constructors invoked with splats return a new object", ->
 
   ok type 且 type instanceof Type
   ok type.args 且 type.args instanceof Array
-  ok v 等于 args[i] for v, i 在 type.args
+  ok v 等于 args[i] 每个 v, i 在 type.args
 
   Type1 = (@a, @b, @c) ->
   type1 = new Type1 args...
@@ -662,7 +662,7 @@ test "#1534: class then 'use strict'", ->
     #{error}
     ### comment 3 ###"""
   ]
-  throws (-> CoffeeScript.run comment, bare: 真) for comment 在 comments
+  throws (-> CoffeeScript.run comment, bare: 真) 每个 comment 在 comments
 
   # [ES5 §14.1](http://es5.github.com/#x14.1) allows for other directives
   directives = ["""
@@ -689,7 +689,7 @@ test "#1534: class then 'use strict'", ->
     'use strict'
     #{error}"""
   ]
-  throws (-> CoffeeScript.run directive, bare: 真) for directive 在 directives
+  throws (-> CoffeeScript.run directive, bare: 真) 每个 directive 在 directives
 
 test "#2052: classes should work in strict mode", ->
   try

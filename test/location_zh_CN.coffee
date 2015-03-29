@@ -61,7 +61,7 @@ getMatchingTokens = (str, wantedTokens...) ->
   tokens = CoffeeScript.tokens str
   matchingTokens = []
   i = 0
-  for token 在 tokens
+  每个 token 在 tokens
     如果 token[1].replace(/^'|'$/g, '"') 等于 wantedTokens[i]
       i++
       matchingTokens.push token
@@ -441,10 +441,10 @@ test "#3621: Multiline regex and manual `Regex` call with interpolation should
   tokensA = CoffeeScript.tokens '(RegExp(".*#{a}[0-9]"))'
   tokensB = CoffeeScript.tokens '///.*#{a}[0-9]///'
   eq tokensA.length, tokensB.length
-  for i 在 [0...tokensA.length] by 1
+  每个 i 在 [0...tokensA.length] by 1
     tokenA = tokensA[i]
     tokenB = tokensB[i]
-    eq tokenA[0], tokenB[0] unless tokenB[0] in ['REGEX_START', 'REGEX_END']
+    eq tokenA[0], tokenB[0] unless tokenB[0] 在 ['REGEX_START', 'REGEX_END']
     eq tokenA[1], tokenB[1]
     unless tokenA[0] 等于 'STRING_START' 或 tokenB[0] 等于 'REGEX_START'
       eq tokenA.origin?[1], tokenB.origin?[1]
@@ -453,5 +453,5 @@ test "#3621: Multiline regex and manual `Regex` call with interpolation should
 test "Verify all tokens get a location", ->
   doesNotThrow ->
     tokens = CoffeeScript.tokens testScript
-    for token 在 tokens
+    每个 token 在 tokens
         ok !!token[2]

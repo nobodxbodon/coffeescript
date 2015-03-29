@@ -207,12 +207,12 @@ test "#1630: `in` should check `hasOwnProperty`", ->
   ok undefined not 在 length: 1
 
 test "#1714: lexer bug with raw range `for` followed by `in`", ->
-  0 for [1..2]
+  0 每个 [1..2]
   ok not ('a' 在 ['b'])
 
-  0 for [1..2]; ok not ('a' 在 ['b'])
+  0 每个 [1..2]; ok not ('a' 在 ['b'])
 
-  0 for [1..10] # comment ending
+  0 每个 [1..10] # comment ending
   ok not ('a' 在 ['b'])
 
 test "#1099: statically determined `not in []` reporting incorrect result", ->
@@ -409,17 +409,17 @@ test "#3598: Unary + and - coerce the operand once when it is an identifier", ->
   assertOneCoercion (a) ->
     ok -2 <= a / 2 < 2
 
-  arrayEq [0], (n for n 在 [0] by 1)
-  arrayEq [0], (n for n 在 [0] by +1)
-  arrayEq [0], (n for n 在 [0] by -1)
+  arrayEq [0], (n 每个 n 在 [0] by 1)
+  arrayEq [0], (n 每个 n 在 [0] by +1)
+  arrayEq [0], (n 每个 n 在 [0] by -1)
   assertOneCoercion (a) ->
-    arrayEq [0], (n for n 在 [0] by +a)
+    arrayEq [0], (n 每个 n 在 [0] by +a)
   assertOneCoercion (a) ->
-    arrayEq [0], (n for n 在 [0] by -a)
+    arrayEq [0], (n 每个 n 在 [0] by -a)
   assertOneCoercion (a) ->
-    arrayEq [0], (n for n 在 [0] by ~a)
+    arrayEq [0], (n 每个 n 在 [0] by ~a)
   assertOneCoercion (a) ->
-    arrayEq [0], (n for n 在 [0] by a * 2 / 2)
+    arrayEq [0], (n 每个 n 在 [0] by a * 2 / 2)
 
   ok 1 在 [0, 1]
   ok +1 在 [0, 1]

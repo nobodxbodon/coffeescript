@@ -4,10 +4,15 @@
     如果 数 < 2
         1
     否则
-        斐波那契(数 - 2) + 斐波那契(数 - 1);
+        斐波那契(数 - 2) + 斐波那契(数 - 1)
 
-for 索引 在 [1..16]
+每个 索引 在 [1..16]
     console.log 斐波那契(索引)
+```
+运行示例：
+
+```shell
+bin/coffee test/demo/fibonacci.coffee
 ```
 
 最简单的汉化方法：
@@ -30,12 +35,6 @@ bin/cake build:parser
 
 ```shell
 bin/cake test
-```
-
-4) 运行示例：
-
-```shell
-bin/coffee test/demo/fibonacci.coffee
 ```
 
 注：开发时所有含有 中文 字符 的源码文件都改成了utf-8

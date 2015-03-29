@@ -17,7 +17,7 @@ test "context property assignment (using @)", ->
 
 test "unassignable values", ->
   nonce = {}
-  for nonref 在 ['', '""', '0', 'f()'].concat CoffeeScript.RESERVED
+  每个 nonref 在 ['', '""', '0', 'f()'].concat CoffeeScript.RESERVED
     eq nonce, (try CoffeeScript.compile "#{nonref} = v" catch e then nonce)
 
 # Compound Assignment
@@ -239,7 +239,7 @@ test "destructuring assignment with context (@) properties", ->
     fn: () ->
       local = [a, {b, c}, d, e]
       [@a, {b: @b, c: @c}, @d, @e] = local
-  eq undefined, obj[key] for key 在 ['a','b','c','d','e']
+  eq undefined, obj[key] 每个 key 在 ['a','b','c','d','e']
   obj.fn()
   eq a, obj.a
   eq b, obj.b
@@ -255,11 +255,11 @@ test "#1005: invalid identifiers allowed on LHS of destructuring assignment", ->
   throws (-> CoffeeScript.compile "[#{disallowed.join ', '}] = x"), null, 'all disallowed'
   throws (-> CoffeeScript.compile "[#{disallowed.join '..., '}...] = x"), null, 'all disallowed as splats'
   t = tSplat = null
-  for v 在 disallowed when v isnt 'class' # `class` by itself is an expression
+  每个 v 在 disallowed when v isnt 'class' # `class` by itself is an expression
     throws (-> CoffeeScript.compile t), null, t = "[#{v}] = x"
     throws (-> CoffeeScript.compile tSplat), null, tSplat = "[#{v}...] = x"
   doesNotThrow ->
-    for v 在 disallowed
+    每个 v 在 disallowed
       CoffeeScript.compile "[a.#{v}] = x"
       CoffeeScript.compile "[a.#{v}...] = x"
       CoffeeScript.compile "[@#{v}] = x"
@@ -344,14 +344,14 @@ test "#1348, #1216: existential assignment compilation", ->
 
 test "#1591, #1101: splatted expressions in destructuring assignment must be assignable", ->
   nonce = {}
-  for nonref 在 ['', '""', '0', 'f()', '(->)'].concat CoffeeScript.RESERVED
+  每个 nonref 在 ['', '""', '0', 'f()', '(->)'].concat CoffeeScript.RESERVED
     eq nonce, (try CoffeeScript.compile "[#{nonref}...] = v" catch e then nonce)
 
 test "#1643: splatted accesses in destructuring assignments should not be declared as variables", ->
   nonce = {}
   accesses = ['o.a', 'o["a"]', '(o.a)', '(o.a).a', '@o.a', 'C::a', 'C::', 'f().a', 'o?.a', 'o?.a.b', 'f?().a']
-  for access 在 accesses
-    for i,j 在 [1,2,3] #position can matter
+  每个 access 在 accesses
+    每个 i,j 在 [1,2,3] #position can matter
       code =
         """
         nonce = {}; nonce2 = {}; nonce3 = {};
@@ -362,8 +362,8 @@ test "#1643: splatted accesses in destructuring assignments should not be declar
       eq nonce, unless (try CoffeeScript.run code, bare: 真 catch e then 真) then nonce
   # subpatterns like `[[a]...]` and `[{a}...]`
   subpatterns = ['[sub, sub2, sub3]', '{0: sub, 1: sub2, 2: sub3}']
-  for subpattern 在 subpatterns
-    for i,j 在 [1,2,3]
+  每个 subpattern 在 subpatterns
+    每个 i,j 在 [1,2,3]
       code =
         """
         nonce = {}; nonce2 = {}; nonce3 = {};
@@ -416,11 +416,11 @@ test "#2181: conditional assignment as a subexpression", ->
 
 test "#1500: Assignment to variables similar to generated variables", ->
   len = 0
-  x = ((results = null; n) for n 在 [1, 2, 3])
+  x = ((results = null; n) 每个 n 在 [1, 2, 3])
   arrayEq [1, 2, 3], x
   eq 0, len
 
-  for x 在 [1, 2, 3]
+  每个 x 在 [1, 2, 3]
     f = ->
       i = 0
     f()

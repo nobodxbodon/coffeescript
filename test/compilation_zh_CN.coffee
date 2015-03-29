@@ -42,11 +42,11 @@ test "Issue 750", ->
 
   cantCompile 'a = (break)'
 
-  cantCompile 'a = (返回 5 for item 在 list)'
+  cantCompile 'a = (返回 5 每个 item 在 list)'
 
   cantCompile 'a = (返回 5 while condition)'
 
-  cantCompile 'a = for x 在 y\n  返回 5'
+  cantCompile 'a = 每个 x 在 y\n  返回 5'
 
 test "Issue #986: Unicode identifiers", ->
   λ = 5
@@ -119,7 +119,7 @@ test "#2944: implicit call with a regex argument", ->
   CoffeeScript.compile 'o[key] /regex/'
 
 test "#3001: `own` shouldn't be allowed in a `for`-`in` loop", ->
-  cantCompile "a for own b 在 c"
+  cantCompile "a 每个 own b 在 c"
 
 test "#2994: single-line `if` requires `then`", ->
   cantCompile "如果 b 否则 x"

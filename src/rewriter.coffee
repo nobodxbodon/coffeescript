@@ -271,7 +271,7 @@ class exports.Rewriter
         s -= 2 while @tag(s - 2) is 'HERECOMMENT'
 
         # Mark if the value is a for loop
-        @insideForDeclaration = nextTag is 'FOR'
+        @insideForDeclaration = nextTag is 'FOR' or nextTag is '每个'
 
         startsLine = s is 0 or @tag(s - 1) in LINEBREAKS or tokens[s - 1].newLine
         # Are we just continuing an already declared object?
@@ -492,7 +492,7 @@ IMPLICIT_CALL    = [
 IMPLICIT_UNSPACED_CALL = ['+', '-']
 
 # Tokens that always mark the end of an implicit call for single-liners.
-IMPLICIT_END     = ['POST_IF', 'FOR', 'WHILE', 'UNTIL', 'WHEN', 'BY',
+IMPLICIT_END     = ['POST_IF', 'FOR', '每个', 'WHILE', 'UNTIL', 'WHEN', 'BY',
   'LOOP', 'TERMINATOR']
 
 # Single-line flavors of block expressions that have unclosed endings.

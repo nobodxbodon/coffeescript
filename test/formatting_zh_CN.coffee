@@ -211,7 +211,7 @@ test "#1195 Ignore trailing semicolons (before newlines or as the last char in a
     nonce2
     unless f() 等于 nonce then throw new Error('; before linebreak should = newline')
     """
-  CoffeeScript.run(preNewline(n), bare: 真) for n 在 [1,2,3]
+  CoffeeScript.run(preNewline(n), bare: 真) 每个 n 在 [1,2,3]
 
   lastChar = '-> lastChar;'
   doesNotThrow -> CoffeeScript.compile lastChar, bare: 真
