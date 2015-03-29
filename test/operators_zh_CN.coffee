@@ -143,31 +143,31 @@ test "`!=` 且 `isnt` should be interchangeable", ->
 test "in, of", ->
   arr = [1]
   ok 0 of arr
-  ok 1 in arr
+  ok 1 在 arr
   # prefixing `not` to `in and `of` should negate them
   ok 1 not of arr
-  ok 0 not in arr
+  ok 0 not 在 arr
 
 test "`in` should be able to operate on an array literal", ->
-  ok 2 in [0, 1, 2, 3]
-  ok 4 not in [0, 1, 2, 3]
+  ok 2 在 [0, 1, 2, 3]
+  ok 4 not 在 [0, 1, 2, 3]
   arr = [0, 1, 2, 3]
-  ok 2 in arr
-  ok 4 not in arr
+  ok 2 在 arr
+  ok 4 not 在 arr
   # should cache the value used to test the array
   arr = [0]
   val = 0
-  ok val++ in arr
-  ok val++ not in arr
+  ok val++ 在 arr
+  ok val++ not 在 arr
   val = 0
-  ok val++ of arr
-  ok val++ not of arr
+  ok val++ 在 arr
+  ok val++ not 在 arr
 
 test "`of` and `in` should be able to operate on instance variables", ->
   obj = {
     list: [2,3]
-    in_list: (value) -> value in @list
-    not_in_list: (value) -> value not in @list
+    in_list: (value) -> value 在 @list
+    not_in_list: (value) -> value not 在 @list
     of_list: (value) -> value of @list
     not_of_list: (value) -> value not of @list
   }
@@ -177,38 +177,38 @@ test "`of` and `in` should be able to operate on instance variables", ->
   ok obj.not_of_list 2
 
 test "#???: `in` with cache and `__indexOf` should work in argument lists", ->
-  eq 1, [Object() in Array()].length
+  eq 1, [Object() 在 Array()].length
 
 test "#737: `in` should have higher precedence than logical operators", ->
-  eq 1, 1 in [1] 且 1
+  eq 1, 1 在 [1] 且 1
 
 test "#768: `in` should preserve evaluation order", ->
   share = 0
   a = -> share++ 如果 share 等于 0
   b = -> share++ 如果 share 等于 1
   c = -> share++ 如果 share 等于 2
-  ok a() not in [b(),c()]
+  ok a() not 在 [b(),c()]
   eq 3, share
 
 test "#1099: empty array after `in` should compile to `false`", ->
-  eq 1, [5 in []].length
-  eq 伪, do -> 返回 0 in []
+  eq 1, [5 在 []].length
+  eq 伪, do -> 返回 0 在 []
 
 test "#1354: optimized `in` checks should not happen when splats are present", ->
   a = [6, 9]
-  eq 9 in [3, a...], 真
+  eq 9 在 [3, a...], 真
 
 test "#1100: precedence in or-test compilation of `in`", ->
-  ok 0 in [1 且 0]
-  ok 0 in [1, 1 且 0]
-  ok not (0 in [1, 0 或 1])
+  ok 0 在 [1 且 0]
+  ok 0 在 [1, 1 且 0]
+  ok not (0 在 [1, 0 或 1])
 
 test "#1630: `in` should check `hasOwnProperty`", ->
-  ok undefined not in length: 1
+  ok undefined not 在 length: 1
 
 test "#1714: lexer bug with raw range `for` followed by `in`", ->
   0 for [1..2]
-  ok not ('a' in ['b'])
+  ok not ('a' 在 ['b'])
 
   0 for [1..2]; ok not ('a' 在 ['b'])
 
@@ -421,14 +421,14 @@ test "#3598: Unary + and - coerce the operand once when it is an identifier", ->
   assertOneCoercion (a) ->
     arrayEq [0], (n for n 在 [0] by a * 2 / 2)
 
-  ok 1 in [0, 1]
-  ok +1 in [0, 1]
-  ok -1 in [0, -1]
+  ok 1 在 [0, 1]
+  ok +1 在 [0, 1]
+  ok -1 在 [0, -1]
   assertOneCoercion (a) ->
-    ok +a in [0, 1]
+    ok +a 在 [0, 1]
   assertOneCoercion (a) ->
-    ok -a in [0, -1]
+    ok -a 在 [0, -1]
   assertOneCoercion (a) ->
-    ok ~a in [0, -2]
+    ok ~a 在 [0, -2]
   assertOneCoercion (a) ->
-    ok a / 2 in [0, 0.5]
+    ok a / 2 在 [0, 0.5]

@@ -6,7 +6,7 @@
     否则
         斐波那契(数 - 2) + 斐波那契(数 - 1);
 
-for 索引 in [1..16]
+for 索引 在 [1..16]
     console.log 斐波那契(索引)
 ```
 
@@ -15,10 +15,15 @@ for 索引 in [1..16]
 从关键词开始
 
 1） 在lexer.coffee中添加一个'if'的alias: “如果”
+（适用于部分关键词。in->在 较复杂：https://github.com/nobodxbodon/coffeescript/commit/1e3d7bb871cb87762521a456aab5eea3bb4e64f5）
 
 2） 重编译咖啡：
 ```shell
 bin/cake build
+```
+in->在 需要生成parser:
+```shell
+bin/cake build:parser
 ```
 
 3） 通过测试（添加汉化版测试 ..._zh_CN.coffee）：

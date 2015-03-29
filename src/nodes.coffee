@@ -1645,7 +1645,7 @@ exports.While = class While extends Base
 # CoffeeScript operations into their JavaScript equivalents.
 exports.Op = class Op extends Base
   constructor: (op, first, second, flip ) ->
-    return new In first, second if op is 'in'
+    return new In first, second if op is 'in' or op is '在'
     if op is 'do'
       return @generateDo first
     if op is 'new'

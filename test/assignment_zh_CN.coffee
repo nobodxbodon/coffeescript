@@ -463,4 +463,4 @@ test "Assignment to variables similar to helper functions", ->
   eq 2, modulo
 
   indexOf = [1, 2, 3]
-  ok 2 in indexOf
+  ok 2 在 indexOf

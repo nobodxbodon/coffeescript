@@ -364,8 +364,8 @@ test "Should be able to handle switches sans-condition.", ->
     when [] not instanceof Array  then 3
     when 真 等于 伪            then 4
     when 'x' < 'y' > 'z'          then 5
-    when 'a' in ['b', 'c']        then 6
-    when 'd' in (['e', 'f'])      then 7
+    when 'a' 在 ['b', 'c']        then 6
+    when 'd' 在 (['e', 'f'])      then 7
     否则 ok
 
   eq result, ok
